@@ -1,0 +1,37 @@
+#include "Menu.h"
+#include "ui_Menu.h"
+
+Menu::Menu(QWidget *parent) :
+    QFrame(parent),
+    ui(new Ui::Menu)
+{
+    ui->setupUi(this);
+
+    l1=new LiEasyLayout(0,width(),height(),LiEasyLayout::left,0.6f);
+
+    l2=new LiFixedToLayout();
+
+    l1->AddUnit(ui->labelTitle);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonLearn,ui->pushButtonSearch},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonTransWord,ui->pushButtonReciteSingle},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonTransSent,ui->pushButtonReciteWhole},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonLiteraryKnowledge,ui->pushButtonDataInput},2);
+    l1->AddUnit(new QWidget*[2]{ui->labelExtraInfo1,ui->labelExtraInfo2},2);
+
+    l1->LayoutConfigDone();
+
+    l2->AddUnit(ui->labelIcon,width(),height(),LiFixedCorner::RightTop);
+    l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
+    l2->AddUnit(ui->pushButtonAbout,width(),height(),LiFixedCorner::RightBottom);
+}
+
+Menu::~Menu()
+{
+    delete ui;
+}
+
+void Menu::resizeEvent(QResizeEvent *event)
+{
+    l1->ResizeWithEasyLayout(width(),height());
+    l2->ResizeWithFixedToLayout(width(),height());
+}

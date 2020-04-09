@@ -3,8 +3,11 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
+#include "Menu.h"
+
+namespace Ui
+{
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -15,8 +18,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    virtual void resizeEvent(QResizeEvent * event);
+
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
+
+    Menu* menu;
 };
 
 #endif // MAINWINDOW_H

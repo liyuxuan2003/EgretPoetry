@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Menu</class>
+ <widget class="QFrame" name="Menu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>675</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Frame</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(77, 83, 49);</string>
+  </property>
+  <widget class="QPushButton" name="pushButtonLiteraryKnowledge">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>530</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>文学常识练习</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonDataInput">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>530</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>创建诗文库</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelExtraInfo2">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>645</y>
+     <width>401</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Copyright © 2020 Li Yuxuan   All Rights Reserved.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelTitle">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>25</y>
+     <width>471</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>23</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>白鹭诗文 / Egret Poetry</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonReciteSingle">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>250</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>单句默写练习</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonExit">
+   <property name="geometry">
+    <rect>
+     <x>980</x>
+     <y>610</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>退出白鹭诗文</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelIcon">
+   <property name="geometry">
+    <rect>
+     <x>1050</x>
+     <y>0</y>
+     <width>150</width>
+     <height>150</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelExtraInfo1">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>625</y>
+     <width>401</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Designed and Developed by Li Yuxuan.</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonSearch">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>120</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>诗文检索窗口</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonReciteWhole">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>390</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>全文默写练习</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonTransSent">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>390</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>重点句翻译练习</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonTransWord">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>250</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>加点字翻译练习</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonAbout">
+   <property name="geometry">
+    <rect>
+     <x>980</x>
+     <y>540</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>关于白鹭诗文</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonLearn">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>120</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>自主学习模式</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
