@@ -35,3 +35,8 @@ void Menu::resizeEvent(QResizeEvent *event)
     l1->ResizeWithEasyLayout(width(),height());
     l2->ResizeWithFixedToLayout(width(),height());
 }
+
+void Menu::on_pushButtonDataInput_clicked()
+{
+    emit(ShowDataInputMenu());
+}

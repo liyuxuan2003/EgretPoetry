@@ -22,12 +22,18 @@ public:
 protected:
     virtual void resizeEvent(QResizeEvent * event);
 
+private slots:
+    void on_pushButtonDataInput_clicked();
+
 private:
     Ui::Menu *ui;
 
     LiEasyLayout* l1;
 
     LiFixedToLayout* l2;
+
+signals:
+    void ShowDataInputMenu();
 };
 
 #endif // MENU_H

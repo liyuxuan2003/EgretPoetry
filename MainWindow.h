@@ -5,6 +5,11 @@
 
 #include "Menu.h"
 
+#include "DataInputMenu.h"
+#include "DataInput.h"
+#include "DataInputConfigInfo.h"
+#include "DataInputConfigSource.h"
+
 namespace Ui
 {
     class MainWindow;
@@ -25,6 +30,13 @@ private:
     Ui::MainWindow* ui;
 
     Menu* menu;
+
+    DataInputMenu* dataInputMenu;
+    DataInput* dataInput;
+    DataInputConfigInfo* dataInputConfigInfo;
+    DataInputConfigSource* dataInputConfigSource;
+
+    void HideAllFrame();
 };
 
 #endif // MAINWINDOW_H
