@@ -19,12 +19,10 @@ LiEasyLayout::LiEasyLayout(int start,int width,int height,LayoutDirection direct
 
     this->li=li;
     this->isNeedHeadOptimize=false;
-    this->headOptimize=1.0f;
+    this->headOptimize=headOptimize;
+
     if(headOptimize!=-1.0f && headOptimize>=0.0f)
-    {
         this->isNeedHeadOptimize=true;
-        this->headOptimize=headOptimize;
-    }
 }
 
 int LiEasyLayout::AddUnit()
@@ -117,15 +115,17 @@ void LiEasyLayout::LayoutConfigDone()
     ratio=new float[easyLayout.size()];
     if(isNeedHeadOptimize==true)
     {
-        ratio[0]=gap[0]*headOptimize;
-        avg=avg-ratio[0];
+        avg-=(float)gap[0];
         avg/=(easyLayout.size()-1);
-        ratioSum+=ratio[0];
+
         for(int i=1;i<easyLayout.size();i++)
         {
             ratio[i]=(float)gap[i]-((float)gap[i]-avg)*li;
             ratioSum+=ratio[i];
         }
+
+        ratio[0]=headOptimize/(1-headOptimize)*ratioSum;
+        ratioSum+ratio[0];
     }
     else if(isNeedHeadOptimize==false)
     {
@@ -150,7 +150,6 @@ void LiEasyLayout::ResizeWithEasyLayout(int width,int height)
     int nowPos=startPos;
     for(int i=0;i<easyLayout.size();i++)
     {
-        //nowPos+=gap[i]*(height*baseLayoutHeight/baseTotalHeight-widgetTotalHeight)/(baseLayoutHeight-widgetTotalHeight);
         nowPos+=(gap[i]+(ratio[i]/ratioSum)*(float)(height-baseTotalHeight));
         easyLayout[i].base->move(easyLayout[i].base->x(),nowPos);
         for(int j=0;j<easyLayout[i].elements.size();j++)

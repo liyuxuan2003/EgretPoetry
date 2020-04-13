@@ -7,7 +7,7 @@ DataInputConfigInfo::DataInputConfigInfo(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    l1=new LiEasyLayout(0,width(),height(),LiEasyLayout::left,0.6f);
+    l1=new LiEasyLayout(0,width(),height(),LiEasyLayout::left,0.6f,0.1f);
 
     l1->AddUnit(ui->labelTitle);
     l1->AddUnit(new QWidget*[2]{ui->labelArticleTitle,ui->lineEditArticleTitle},2);

@@ -42,7 +42,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>110</y>
+     <y>100</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -87,8 +87,8 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>180</y>
-     <width>471</width>
+     <y>150</y>
+     <width>511</width>
      <height>361</height>
     </rect>
    </property>
@@ -111,14 +111,16 @@ color: rgb(255, 255, 255);</string>
 
 至若春和景明，波澜不惊，上下天光，一碧万顷，沙鸥翔集，锦鳞游泳，岸芷汀兰，郁郁青青。而或长烟一空，皓月千里，浮光跃金，静影沉璧，渔歌互答，此乐何极！登斯楼也，则有心旷神怡，宠辱偕忘，把酒临风，其喜洋洋者矣。
 
-嗟夫！予尝求古仁人之心，或异二者之为，何哉？不以物喜，不以己悲，居庙堂之高则忧其民，处江湖之远则忧其君。是进亦忧，退亦忧。然则何时而乐耶？其必曰“先天下之忧而忧，后天下之乐而乐”乎！噫！微斯人，吾谁与归？时六年九月十五日。</string>
+嗟夫！予尝求古仁人之心，或异二者之为，何哉？不以物喜，不以己悲，居庙堂之高则忧其民，处江湖之远则忧其君。是进亦忧，退亦忧。然则何时而乐耶？其必曰“先天下之忧而忧，后天下之乐而乐”乎！噫！微斯人，吾谁与归？
+
+时六年九月十五日。</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelTranslate">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>110</y>
+     <x>610</x>
+     <y>100</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -139,9 +141,9 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPlainTextEdit" name="plainTextEditTranslate">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>180</y>
-     <width>481</width>
+     <x>610</x>
+     <y>150</y>
+     <width>531</width>
      <height>361</height>
     </rect>
    </property>
@@ -167,6 +169,50 @@ color: rgb(255, 255, 255);</string>
 唉！我曾经探求古时品德高尚的人的思想感情 ，或许不同于以上两种人的心情，这是为什么呢？是由于不因外物好坏和自己得失而或喜或悲。在朝廷上做官时，就为百姓担忧；处在僻远的地方做官则为君主担忧。这样来说在朝廷做官也担忧，在僻远的江湖也担忧。既然这样，那么他们什么时候才会感到快乐呢？他们一定会说：“在天下人忧之前先忧，在天下人乐之后才乐”。唉！如果没有这种人，我同谁一道呢 ？
 
 写于庆历六年九月十五日。 </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelFailed">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>600</y>
+     <width>441</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 100, 90);</string>
+   </property>
+   <property name="text">
+    <string>原文和译文的段落数量不匹配，请仔细检查！</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelInfo">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>530</y>
+     <width>911</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>段首不要插入空格，段落间隔请使用两个换行，古诗分句请使用一个换行。</string>
    </property>
   </widget>
  </widget>

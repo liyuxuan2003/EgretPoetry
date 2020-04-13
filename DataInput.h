@@ -41,15 +41,30 @@ private:
     LiEasyLayout* l1;
     LiFixedToLayout* l2;
 
+    //Json File
     QString path;
     QString name;
 
+    //Config Info
     QString title;
     QString author;
     QString type;
 
+    //Config Source
     QString original;
     QString translate;
+
+    QStringList originalList;
+    QStringList translateList;
+
+    QList<int> sectionOrig;         //Mark the start id.
+    QList<int> sectionTran;         //Mark the start id.
+    QList<int> lineBreak;           //Mark the start id.
+
+    const QString symbol[6]={"。","，","？","！","；","："};
+    const int symbolNum=6;
+
+    bool isSourceDone;
 
 signals:
     void ShowMenu();

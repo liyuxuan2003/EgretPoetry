@@ -7,7 +7,7 @@ DataInputMenu::DataInputMenu(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    l1=new LiEasyLayout(0,width(),height(),LiEasyLayout::left,0.6f);
+    l1=new LiEasyLayout(0,width(),height(),LiEasyLayout::left,0.6f,0.1f);
     l2=new LiFixedToLayout();
 
     l1->AddUnit(ui->labelTitle);
