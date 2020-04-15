@@ -6,6 +6,8 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
+#include "GlobalEnum.h"
+
 namespace Ui
 {
     class DataInputConfigSource;
@@ -19,7 +21,7 @@ public:
     explicit DataInputConfigSource(QWidget *parent = nullptr);
     ~DataInputConfigSource();
 
-    void Init(const QString& original,const QString& translate);
+    void Init(const QString& textOrig,const QString& textTran);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -32,11 +34,14 @@ private:
 
     LiEasyLayout* l1;
 
-    QString original;
-    QString translate;
+    const QString symbol[6]={"。","，","？","！","；","："};
+    const int symbolNum=6;
+
+    void DataProcess(const QString& text,QStringList& sentence,QList<int>& lineBreak,QList<int>& section);
+    void SetErrorText(const QString& errorText,QString& errorTextVar);
 
 signals:
-    void ConfigSourceDone(const QString& original,const QString& translate);
+    void ConfigSourceDone(const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,SplitMode::Mode splitMode);
 };
 
 #endif // DATAINPUTCONFIGSOURCE_H

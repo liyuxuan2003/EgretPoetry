@@ -30,19 +30,20 @@ void DataInputConfigInfo::resizeEvent(QResizeEvent *event)
 
 void DataInputConfigInfo::Init(const QString& title,const QString& author,const QString& type)
 {
-    this->title=title;
-    this->author=author;
-    this->type=type;
-
-    ui->lineEditArticleTitle->setText(this->title);
-    ui->lineEditArticleAuthor->setText(this->author);
-    ui->comboBoxArticleType->setCurrentText(this->type);
+    ui->lineEditArticleTitle->setText(title);
+    ui->lineEditArticleAuthor->setText(author);
+    ui->comboBoxArticleType->setCurrentText(type);
 }
 
 void DataInputConfigInfo::on_pushButtonDone_clicked()
 {
+    QString title;
+    QString author;
+    QString type;
+
     title=ui->lineEditArticleTitle->text();
     author=ui->lineEditArticleAuthor->text();
     type=ui->comboBoxArticleType->currentText();
+
     emit(ConfigInfoDone(title,author,type));
 }

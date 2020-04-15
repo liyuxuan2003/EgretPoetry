@@ -98,9 +98,21 @@ color: rgb(255, 255, 255);</string>
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="cursor" stdset="0">
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
 color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="lineWrapMode">
+    <enum>QPlainTextEdit::WidgetWidth</enum>
    </property>
    <property name="plainText">
     <string>庆历四年春，滕子京谪守巴陵郡。越明年，政通人和，百废具兴，乃重修岳阳楼，增其旧制，刻唐贤今人诗赋于其上，属予作文以记之。
@@ -157,6 +169,12 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">background-color: rgb(117, 133, 67);
 color: rgb(255, 255, 255);</string>
    </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
    <property name="plainText">
     <string>庆历四年的春天，滕子京被降职到巴陵郡做太守。到了第二年，政事顺利，百姓和乐，各种荒废的事业都兴办起来了。于是重新修建岳阳楼，扩大它原有的规模，把唐代名家和当代人的诗赋刻在它上面。嘱托我写一篇文章来记述这件事情。
 
@@ -176,7 +194,7 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>260</x>
      <y>600</y>
-     <width>441</width>
+     <width>801</width>
      <height>31</height>
     </rect>
    </property>
@@ -212,7 +230,7 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>段首不要插入空格，段落间隔请使用两个换行，古诗分句请使用一个换行。</string>
+    <string>段首不要插入空格，古文分段请使用两个换行，古诗分句请使用一个换行。</string>
    </property>
   </widget>
  </widget>

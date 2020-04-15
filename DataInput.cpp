@@ -45,23 +45,76 @@ void DataInput::Init(const QString &path,const QString &name)
     author="";
     type="文";
 
-    original="";
-    translate="";
+    sentenceOrig.clear();
+    sentenceTran.clear();
 
-    originalList.clear();
-    translateList.clear();
+    partOrig.clear();
+    partTran.clear();
 
-    sectionOrig.clear();
-    sectionTran.clear();
-    lineBreak.clear();
+    splitMode=SplitMode::Section;
 
-    isSourceDone=false;
+    ui->pushButtonAlign->setDisabled(true);
+    ui->pushButtonSent->setDisabled(true);
+    ui->pushButtonWord->setDisabled(true);
+
+    ui->pushButtonAlign->setStyleSheet("background-color:rgb(106,106,106); color:rgb(255,255,255);");
+    ui->pushButtonSent->setStyleSheet("background-color:rgb(106,106,106); color:rgb(255,255,255);");
+    ui->pushButtonWord->setStyleSheet("background-color:rgb(106,106,106); color:rgb(255,255,255);");
 }
 
 void DataInput::on_pushButtonExit_clicked()
 {
     emit(ShowMenu());
 }
+
+QString DataInput::GenerateTextOrig()
+{
+    QString textOrig="";
+    QString splitString;
+
+    if(splitMode==SplitMode::LineBreak)
+        splitString="\n";
+    if(splitMode==SplitMode::Section)
+        splitString="\n\n";
+
+    int splitCounter=0;
+    for(int i=0;i<sentenceOrig.size();i++)
+    {
+        textOrig+=sentenceOrig[i];
+        if(partOrig[splitCounter].second==i && splitCounter!=partOrig.size())
+        {
+            splitCounter++;
+            textOrig+=splitString;
+        }
+    }
+
+    return textOrig;
+}
+
+QString DataInput::GenerateTextTran()
+{
+    QString textTran="";
+    QString splitString;
+
+    if(splitMode==SplitMode::LineBreak)
+        splitString="\n";
+    if(splitMode==SplitMode::Section)
+        splitString="\n\n";
+
+    int splitCounter=0;
+    for(int i=0;i<sentenceTran.size();i++)
+    {
+        textTran+=sentenceTran[i];
+        if(partTran[splitCounter].second==i && splitCounter!=partTran.size())
+        {
+            splitCounter++;
+            textTran+=splitString;
+        }
+    }
+
+    return textTran;
+}
+
 
 void DataInput::on_pushButtonInfo_clicked()
 {
@@ -77,83 +130,25 @@ void DataInput::WrtieInfo(const QString& title,const QString& author,const QStri
 
 void DataInput::on_pushButtonSource_clicked()
 {
-    emit(ShowDataInputConfigSource(original,translate));
+    emit(ShowDataInputConfigSource(GenerateTextOrig(),GenerateTextTran()));
 }
 
-void DataInput::WriteSource(const QString& original,const QString& translate)
+void DataInput::WriteSource(const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,SplitMode::Mode splitMode)
 {
-    this->original=original;
-    this->translate=translate;
+    this->sentenceOrig=sentenceOrig;
+    this->sentenceTran=sentenceTran;
+    this->partOrig=partOrig;
+    this->partTran=partTran;
+    this->splitMode=splitMode;
 
-    isSourceDone=true;
-
-    int startFrom;
-
-    startFrom=0;
-    for(int i=0;i<original.size();i++)
+    if(sentenceOrig.size()!=0)
     {
-        QString nowHandle=original.mid(i,1);
-
-        if(nowHandle=="\n")
-        {
-            if(original.mid(i-1,1)!="\n" && original.mid(i+1,1)!="\n")
-            {
-                lineBreak.append(originalList.size());
-                continue;
-            }
-            else if(original.mid(i+1,1)=="\n")  //It is the first \n of section.
-            {
-                sectionOrig.append(originalList.size());
-                continue;
-            }
-            else if(original.mid(i-1,1)=="\n")  //It is the second \n of section.
-            {
-                continue;
-            }
-        }
-
-        bool isSymbol=false;
-        for(int j=0;j<symbolNum;j++)
-        {
-            if(nowHandle==symbol[j])
-            {
-                isSymbol=true;
-                break;
-            }
-        }
-        if(isSymbol==true)
-        {
-            originalList.append(original.mid(startFrom,i-startFrom+1));
-            startFrom=i+1;
-        }
+        ui->pushButtonAlign->setEnabled(true);
+        ui->pushButtonAlign->setStyleSheet("background-color:rgb(117, 133, 67); color:rgb(255,255,255);");
     }
+}
 
-    startFrom=0;
-    for(int i=0;i<translate.size();i++)
-    {
-        QString nowHandle=translate.mid(i,1);
-
-        if(nowHandle=="\n")
-        {
-            if(translate.mid(i+1,1)=="\n")   //Judge it is the first or second \n of section.
-                sectionTran.append(translateList.size());
-            continue;
-        }
-
-        bool isSymbol=false;
-        for(int j=0;j<symbolNum;j++)
-        {
-            if(nowHandle==symbol[j])
-            {
-                isSymbol=true;
-                break;
-            }
-        }
-        if(isSymbol==true)
-        {
-            translateList.append(translate.mid(startFrom,i-startFrom+1));
-            startFrom=i+1;
-        }
-    }
-
+void DataInput::on_pushButtonAlign_clicked()
+{
+    emit(ShowDataInputConfigAlign(GenerateTextOrig(),GenerateTextTran(),partOrig,partTran,align));
 }

@@ -9,6 +9,9 @@
 #include "DataInput.h"
 #include "DataInputConfigInfo.h"
 #include "DataInputConfigSource.h"
+#include "DataInputConfigAlign.h"
+
+#include "GlobalEnum.h"
 
 namespace Ui
 {
@@ -35,6 +38,7 @@ private:
     DataInput* dataInput;
     DataInputConfigInfo* dataInputConfigInfo;
     DataInputConfigSource* dataInputConfigSource;
+    DataInputConfigAlign* dataInputConfigAlign;
 
     void HideAllFrame();
 };

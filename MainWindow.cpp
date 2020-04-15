@@ -22,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
     dataInputConfigSource=new DataInputConfigSource(this);
     dataInputConfigSource->move(0,0);
 
+    dataInputConfigAlign=new DataInputConfigAlign(this);
+    dataInputConfigAlign->move(0,0);
+
     //Menu
     connect(menu,&Menu::ShowDataInputMenu,[=]()
     {
@@ -66,21 +69,27 @@ MainWindow::MainWindow(QWidget *parent) :
     });
 
     //DataInput <=> DataInputConfigSource
-
-    connect(dataInput,&DataInput::ShowDataInputConfigSource,[=](const QString& original,const QString& translate)
+    connect(dataInput,&DataInput::ShowDataInputConfigSource,[=](const QString& textOrig,const QString& textTran)
     {
         HideAllFrame();
         dataInputConfigSource->show();
-        dataInputConfigSource->Init(original,translate);
+        dataInputConfigSource->Init(textOrig,textTran);
     });
 
-    connect(dataInputConfigSource,&DataInputConfigSource::ConfigSourceDone,[=](const QString& original,const QString& translate)
+    connect(dataInputConfigSource,&DataInputConfigSource::ConfigSourceDone,[=](const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,SplitMode::Mode splitMode)
     {
         HideAllFrame();
         dataInput->show();
-        dataInput->WriteSource(original,translate);
+        dataInput->WriteSource(sentenceOrig,sentenceTran,partOrig,partTran,splitMode);
     });
 
+    //DataInput <=> DataInputConfigAlign
+    connect(dataInput,&DataInput::ShowDataInputConfigAlign,[=](const QString& textOrig,const QString& textTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,const QList<QPair<int,int>>& align)
+    {
+        HideAllFrame();
+        dataInputConfigAlign->show();
+        dataInputConfigAlign->Init(textOrig,textTran,partOrig,partTran,align);
+    });
 
     HideAllFrame();
     menu->show();
@@ -99,6 +108,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     dataInput->resize(width(),height());
     dataInputConfigInfo->resize(width(),height());
     dataInputConfigSource->resize(width(),height());
+    dataInputConfigAlign->resize(width(),height());
 }
 
 void MainWindow::HideAllFrame()
@@ -109,4 +119,5 @@ void MainWindow::HideAllFrame()
     dataInput->hide();
     dataInputConfigInfo->hide();
     dataInputConfigSource->hide();
+    dataInputConfigAlign->hide();
 }

@@ -32,10 +32,6 @@ private:
 
     LiEasyLayout* l1;
 
-    QString title;
-    QString author;
-    QString type;
-
 signals:
     void ConfigInfoDone(const QString& title,const QString& author,const QString& type);
 };

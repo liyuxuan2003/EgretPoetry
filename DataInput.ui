@@ -260,7 +260,7 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>警告！请不要在完成原文和翻译的录入后进行再次修改！</string>
+    <string>警告！请不要在完成原文和翻译的录入对齐后进行再次修改！</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelWarning2">

@@ -6,6 +6,8 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
+#include "GlobalEnum.h"
+
 namespace Ui
 {
     class DataInput;
@@ -23,7 +25,7 @@ public:
 
     void WrtieInfo(const QString& title,const QString& author,const QString& type);
 
-    void WriteSource(const QString& original,const QString& translate);
+    void WriteSource(const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,SplitMode::Mode splitMode);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -34,6 +36,8 @@ private slots:
     void on_pushButtonInfo_clicked();
 
     void on_pushButtonSource_clicked();
+
+    void on_pushButtonAlign_clicked();
 
 private:
     Ui::DataInput *ui;
@@ -51,28 +55,31 @@ private:
     QString type;
 
     //Config Source
-    QString original;
-    QString translate;
+    QStringList sentenceOrig;
+    QStringList sentenceTran;
 
-    QStringList originalList;
-    QStringList translateList;
+    QList<QPair<int,int>> partOrig;
+    QList<QPair<int,int>> partTran;
 
-    QList<int> sectionOrig;         //Mark the start id.
-    QList<int> sectionTran;         //Mark the start id.
-    QList<int> lineBreak;           //Mark the start id.
+    SplitMode::Mode splitMode;
+
+    //Config Align
+    QList<QPair<int,int>> align;
 
     const QString symbol[6]={"。","，","？","！","；","："};
     const int symbolNum=6;
 
-    bool isSourceDone;
+    QString GenerateTextOrig();
+    QString GenerateTextTran();
 
 signals:
     void ShowMenu();
 
     void ShowDataInputConfigInfo(const QString& title,const QString& author,const QString& type);
 
-    void ShowDataInputConfigSource(const QString& original,const QString& translate);
+    void ShowDataInputConfigSource(const QString& textOrig,const QString& textTran);
 
+    void ShowDataInputConfigAlign(const QString& textOrig,const QString& textTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,const QList<QPair<int,int>>& align);
 };
 
 #endif // DATAINPUT_H
