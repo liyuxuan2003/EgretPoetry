@@ -27,6 +27,8 @@ public:
 
     void WriteSource(const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,SplitMode::Mode splitMode);
 
+    void WriteAlign(const QList<QPair<int,int>>& align);
+
 protected:
     virtual void resizeEvent(QResizeEvent * event);
 
@@ -79,7 +81,7 @@ signals:
 
     void ShowDataInputConfigSource(const QString& textOrig,const QString& textTran);
 
-    void ShowDataInputConfigAlign(const QString& textOrig,const QString& textTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,const QList<QPair<int,int>>& align);
+    void ShowDataInputConfigAlign(const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,const QList<QPair<int,int>>& align);
 };
 
 #endif // DATAINPUT_H

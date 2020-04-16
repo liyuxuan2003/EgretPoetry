@@ -84,11 +84,18 @@ MainWindow::MainWindow(QWidget *parent) :
     });
 
     //DataInput <=> DataInputConfigAlign
-    connect(dataInput,&DataInput::ShowDataInputConfigAlign,[=](const QString& textOrig,const QString& textTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,const QList<QPair<int,int>>& align)
+    connect(dataInput,&DataInput::ShowDataInputConfigAlign,[=](const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,const QList<QPair<int,int>>& align)
     {
         HideAllFrame();
         dataInputConfigAlign->show();
-        dataInputConfigAlign->Init(textOrig,textTran,partOrig,partTran,align);
+        dataInputConfigAlign->Init(textOrig,textTran,sentenceOrig,sentenceTran,partOrig,partTran,align);
+    });
+
+    connect(dataInputConfigAlign,&DataInputConfigAlign::ConfigAlignDone,[=](const QList<QPair<int,int>>& align)
+    {
+        HideAllFrame() ;
+        dataInput->show();
+        dataInput->WriteAlign(align);
     });
 
     HideAllFrame();

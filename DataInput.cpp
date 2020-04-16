@@ -150,5 +150,10 @@ void DataInput::WriteSource(const QStringList& sentenceOrig,const QStringList& s
 
 void DataInput::on_pushButtonAlign_clicked()
 {
-    emit(ShowDataInputConfigAlign(GenerateTextOrig(),GenerateTextTran(),partOrig,partTran,align));
+    emit(ShowDataInputConfigAlign(GenerateTextOrig(),GenerateTextTran(),sentenceOrig,sentenceTran,partOrig,partTran,align));
+}
+
+void DataInput::WriteAlign(const QList<QPair<int, int>>& align)
+{
+    this->align=align;
 }
