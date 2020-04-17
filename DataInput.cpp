@@ -53,13 +53,15 @@ void DataInput::Init(const QString &path,const QString &name)
 
     splitMode=SplitMode::Section;
 
-    ui->pushButtonAlign->setDisabled(true);
-    ui->pushButtonSent->setDisabled(true);
-    ui->pushButtonWord->setDisabled(true);
+    align.clear();
 
-    ui->pushButtonAlign->setStyleSheet("background-color:rgb(106,106,106); color:rgb(255,255,255);");
-    ui->pushButtonSent->setStyleSheet("background-color:rgb(106,106,106); color:rgb(255,255,255);");
-    ui->pushButtonWord->setStyleSheet("background-color:rgb(106,106,106); color:rgb(255,255,255);");
+    wordInSentenceId.clear();
+    wordPos.clear();
+    wordMean.clear();
+
+    DisabledButton(ui->pushButtonAlign);
+    DisabledButton(ui->pushButtonSent);
+    DisabledButton(ui->pushButtonWord);
 }
 
 void DataInput::on_pushButtonExit_clicked()
@@ -115,6 +117,17 @@ QString DataInput::GenerateTextTran()
     return textTran;
 }
 
+void DataInput::EnabledButton(QPushButton* button)
+{
+    button->setEnabled(true);
+    button->setStyleSheet("background-color:rgb(117, 133, 67); color:rgb(255,255,255)");
+}
+
+void DataInput::DisabledButton(QPushButton* button)
+{
+    button->setDisabled(true);
+    button->setStyleSheet("background-color:rgb(106,106,106); color:rgb(255,255,255);");
+}
 
 void DataInput::on_pushButtonInfo_clicked()
 {
@@ -142,10 +155,7 @@ void DataInput::WriteSource(const QStringList& sentenceOrig,const QStringList& s
     this->splitMode=splitMode;
 
     if(sentenceOrig.size()!=0)
-    {
-        ui->pushButtonAlign->setEnabled(true);
-        ui->pushButtonAlign->setStyleSheet("background-color:rgb(117, 133, 67); color:rgb(255,255,255);");
-    }
+        EnabledButton(ui->pushButtonAlign);
 }
 
 void DataInput::on_pushButtonAlign_clicked()
@@ -153,7 +163,25 @@ void DataInput::on_pushButtonAlign_clicked()
     emit(ShowDataInputConfigAlign(GenerateTextOrig(),GenerateTextTran(),sentenceOrig,sentenceTran,partOrig,partTran,align));
 }
 
-void DataInput::WriteAlign(const QList<QPair<int, int>>& align)
+void DataInput::WriteAlign(const QList<QPair<int,int>>& align)
 {
     this->align=align;
+
+    if(align.size()==sentenceOrig.size())
+    {
+        EnabledButton(ui->pushButtonWord);
+        EnabledButton(ui->pushButtonSent);
+    }
+}
+
+void DataInput::on_pushButtonWord_clicked()
+{
+    emit(ShowDataInputConfigWord(GenerateTextOrig(),GenerateTextTran(),sentenceOrig,wordInSentenceId,wordPos,wordMean));
+}
+
+void DataInput::WriteWord(const QList<int>& wordInSentenceId,const QList<QPair<int,int>>& wordPos,const QStringList& wordMean)
+{
+    this->wordInSentenceId=wordInSentenceId;
+    this->wordPos=wordPos;
+    this->wordMean=wordMean;
 }

@@ -25,6 +25,9 @@ MainWindow::MainWindow(QWidget *parent) :
     dataInputConfigAlign=new DataInputConfigAlign(this);
     dataInputConfigAlign->move(0,0);
 
+    dataInputConfigWord=new DataInputConfigWord(this);
+    dataInputConfigWord->move(0,0);
+
     //Menu
     connect(menu,&Menu::ShowDataInputMenu,[=]()
     {
@@ -93,9 +96,24 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(dataInputConfigAlign,&DataInputConfigAlign::ConfigAlignDone,[=](const QList<QPair<int,int>>& align)
     {
-        HideAllFrame() ;
+        HideAllFrame();
         dataInput->show();
         dataInput->WriteAlign(align);
+    });
+
+    //DataInput <=> DataInputConfigWord
+    connect(dataInput,&DataInput::ShowDataInputConfigWord,[=](const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QList<int>& wordInSentenceId,const QList<QPair<int,int>>& wordPos,const QStringList& wordMean)
+    {
+        HideAllFrame();
+        dataInputConfigWord->show();
+        dataInputConfigWord->Init(textOrig,textTran,sentenceOrig,wordInSentenceId,wordPos,wordMean);
+    });
+
+    connect(dataInputConfigWord,&DataInputConfigWord::ConfigWordDone,[=](const QList<int>& wordInSentenceId,const QList<QPair<int,int>>& wordPos,const QStringList& wordMean)
+    {
+        HideAllFrame();
+        dataInput->show();
+        dataInput->WriteWord(wordInSentenceId,wordPos,wordMean);
     });
 
     HideAllFrame();
@@ -116,6 +134,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     dataInputConfigInfo->resize(width(),height());
     dataInputConfigSource->resize(width(),height());
     dataInputConfigAlign->resize(width(),height());
+    dataInputConfigWord->resize(width(),height());
 }
 
 void MainWindow::HideAllFrame()
@@ -127,4 +146,5 @@ void MainWindow::HideAllFrame()
     dataInputConfigInfo->hide();
     dataInputConfigSource->hide();
     dataInputConfigAlign->hide();
+    dataInputConfigWord->hide();
 }

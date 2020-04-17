@@ -2,6 +2,7 @@
 #define DATAINPUT_H
 
 #include <QFrame>
+#include <QPushButton>
 
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
@@ -29,6 +30,8 @@ public:
 
     void WriteAlign(const QList<QPair<int,int>>& align);
 
+    void WriteWord(const QList<int>& wordInSentenceId,const QList<QPair<int,int>>& wordPos,const QStringList& wordMean);
+
 protected:
     virtual void resizeEvent(QResizeEvent * event);
 
@@ -40,6 +43,8 @@ private slots:
     void on_pushButtonSource_clicked();
 
     void on_pushButtonAlign_clicked();
+
+    void on_pushButtonWord_clicked();
 
 private:
     Ui::DataInput *ui;
@@ -68,11 +73,19 @@ private:
     //Config Align
     QList<QPair<int,int>> align;
 
+    //Config Word
+    QList<int> wordInSentenceId;
+    QList<QPair<int,int>> wordPos;
+    QStringList wordMean;
+
     const QString symbol[6]={"。","，","？","！","；","："};
     const int symbolNum=6;
 
     QString GenerateTextOrig();
     QString GenerateTextTran();
+
+    void DisabledButton(QPushButton* button);
+    void EnabledButton(QPushButton* button);
 
 signals:
     void ShowMenu();
@@ -82,6 +95,8 @@ signals:
     void ShowDataInputConfigSource(const QString& textOrig,const QString& textTran);
 
     void ShowDataInputConfigAlign(const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,const QList<QPair<int,int>>& align);
+
+    void ShowDataInputConfigWord(const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QList<int>& wordInSentenceId,const QList<QPair<int,int>>& wordPos,const QStringList& wordMean);
 };
 
 #endif // DATAINPUT_H

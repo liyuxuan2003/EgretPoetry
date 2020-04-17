@@ -10,6 +10,7 @@
 #include "DataInputConfigInfo.h"
 #include "DataInputConfigSource.h"
 #include "DataInputConfigAlign.h"
+#include "DataInputConfigWord.h"
 
 #include "GlobalEnum.h"
 
@@ -39,6 +40,7 @@ private:
     DataInputConfigInfo* dataInputConfigInfo;
     DataInputConfigSource* dataInputConfigSource;
     DataInputConfigAlign* dataInputConfigAlign;
+    DataInputConfigWord* dataInputConfigWord;
 
     void HideAllFrame();
 };
