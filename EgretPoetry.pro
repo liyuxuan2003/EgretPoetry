@@ -37,7 +37,8 @@ SOURCES += \
     DataInputConfigInfo.cpp \
     DataInputConfigSource.cpp \
     DataInputConfigAlign.cpp \
-    DataInputConfigWord.cpp
+    DataInputConfigWord.cpp \
+    DataInputConfigSent.cpp
 
 HEADERS += \
         MainWindow.h \
@@ -52,7 +53,8 @@ HEADERS += \
     DataInputConfigSource.h \
     GlobalEnum.h \
     DataInputConfigAlign.h \
-    DataInputConfigWord.h
+    DataInputConfigWord.h \
+    DataInputConfigSent.h
 
 FORMS += \
         MainWindow.ui \
@@ -62,7 +64,8 @@ FORMS += \
     DataInputConfigInfo.ui \
     DataInputConfigSource.ui \
     DataInputConfigAlign.ui \
-    DataInputConfigWord.ui
+    DataInputConfigWord.ui \
+    DataInputConfigSent.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
