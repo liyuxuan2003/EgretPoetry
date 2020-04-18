@@ -23,6 +23,7 @@ DataInput::DataInput(QWidget *parent) :
     l1->LayoutConfigDone();
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
+    l2->AddUnit(ui->pushButtonReadData,width(),height(),LiFixedCorner::RightTop);
 }
 
 DataInput::~DataInput()
@@ -59,9 +60,14 @@ void DataInput::Init(const QString &path,const QString &name)
     wordPos.clear();
     wordMean.clear();
 
+    sentenceId.clear();
+    sentenceMean.clear();
+
     DisabledButton(ui->pushButtonAlign);
     DisabledButton(ui->pushButtonSent);
     DisabledButton(ui->pushButtonWord);
+
+    ui->labelWriteData->setText("未保存数据！");
 }
 
 void DataInput::on_pushButtonExit_clicked()
@@ -184,4 +190,201 @@ void DataInput::WriteWord(const QList<int>& wordInSentenceId,const QList<QPair<i
     this->wordInSentenceId=wordInSentenceId;
     this->wordPos=wordPos;
     this->wordMean=wordMean;
+}
+
+void DataInput::on_pushButtonSent_clicked()
+{
+    emit(ShowDataInputConfigSent(GenerateTextOrig(),GenerateTextTran(),sentenceOrig,sentenceTran,align,sentenceId,sentenceMean));
+}
+
+void DataInput::WriteSent(const QList<QPair<int,int>>& sentenceId,const QStringList& sentenceMean)
+{
+    this->sentenceId=sentenceId;
+    this->sentenceMean=sentenceMean;
+}
+
+void DataInput::on_pushButtonWriteData_clicked()
+{
+    QFile file(path+name+".json");
+    file.open(QIODevice::ReadWrite);
+    file.resize(0);
+
+    QJsonObject jsonObjectRoot;
+
+    //Config Source
+    jsonObjectRoot.insert("title",title);
+    jsonObjectRoot.insert("author",author);
+    jsonObjectRoot.insert("type",type);
+
+    jsonObjectRoot.insert("sentenceOrig",QJsonArray::fromStringList(sentenceOrig));
+    jsonObjectRoot.insert("sentenceTran",QJsonArray::fromStringList(sentenceTran));
+
+    jsonObjectRoot.insert("splitMode",splitMode);
+
+    QJsonArray jsonArrayPartOrig;
+    for(int i=0;i<partOrig.size();i++)
+    {
+        QJsonObject jsonObject;
+        jsonObject.insert("first",partOrig[i].first);
+        jsonObject.insert("second",partOrig[i].second);
+        jsonArrayPartOrig.append(jsonObject);
+    }
+    jsonObjectRoot.insert("partOrig",jsonArrayPartOrig);
+
+    QJsonArray jsonArrayPartTran;
+    for(int i=0;i<partTran.size();i++)
+    {
+        QJsonObject jsonObject;
+        jsonObject.insert("first",partTran[i].first);
+        jsonObject.insert("second",partTran[i].second);
+        jsonArrayPartTran.append(jsonObject);
+    }
+    jsonObjectRoot.insert("partTran",jsonArrayPartTran);
+
+    //Config Align
+    QJsonArray jsonArrayAlign;
+    for(int i=0;i<align.size();i++)
+    {
+        QJsonObject jsonObject;
+        jsonObject.insert("first",align[i].first);
+        jsonObject.insert("second",align[i].second);
+        jsonArrayAlign.append(jsonObject);
+    }
+    jsonObjectRoot.insert("align",jsonArrayAlign);
+
+    //Config Word
+    QJsonArray jsonArrayWordInSentenceId;
+    for(int i=0;i<wordInSentenceId.size();i++)
+    {
+        jsonArrayWordInSentenceId.append(wordInSentenceId[i]);
+    }
+    jsonObjectRoot.insert("wordInSentenceId",jsonArrayWordInSentenceId);
+
+    QJsonArray jsonArrayWordPos;
+    for(int i=0;i<wordPos.size();i++)
+    {
+        QJsonObject jsonObject;
+        jsonObject.insert("first",wordPos[i].first);
+        jsonObject.insert("second",wordPos[i].second);
+        jsonArrayWordPos.append(jsonObject);
+    }
+    jsonObjectRoot.insert("wordPos",jsonArrayWordPos);
+
+    jsonObjectRoot.insert("wordMean",QJsonArray::fromStringList(wordMean));
+
+    //Config Sent
+    QJsonArray jsonArraySentenceId;
+    for(int i=0;i<sentenceId.size();i++)
+    {
+        QJsonObject jsonObject;
+        jsonObject.insert("first",sentenceId[i].first);
+        jsonObject.insert("second",sentenceId[i].second);
+        jsonArraySentenceId.append(jsonObject);
+    }
+    jsonObjectRoot.insert("sentenceId",jsonArraySentenceId);
+
+    jsonObjectRoot.insert("sentenceMean",QJsonArray::fromStringList(sentenceMean));
+
+    //Write Json File
+    QJsonDocument jsonDoc;
+    jsonDoc.setObject(jsonObjectRoot);
+
+    file.write(jsonDoc.toJson());
+    file.close();
+
+    ui->labelWriteData->show();
+    ui->labelWriteData->setText("保存数据成功！（"+QTime::currentTime().toString()+"）");
+}
+
+void DataInput::on_pushButtonReadData_clicked()
+{
+    QString readFileUrl=QFileDialog::getOpenFileName(this,"请选择需读取的诗文库（警告！当前数据将被覆盖！）","D:/","JSON File (*.json)");
+    if(readFileUrl=="")
+        return;
+
+    QFile file(readFileUrl);
+    file.open(QIODevice::ReadOnly);
+
+    QByteArray jsonData=file.readAll();
+    file.close();
+
+    QJsonDocument jsonDoc(QJsonDocument::fromJson(jsonData));
+    QJsonObject jsonObjectRoot=jsonDoc.object();
+
+    QJsonArray temp;
+
+    //Config Source
+    title=jsonObjectRoot.value("title").toString();
+    author=jsonObjectRoot.value("author").toString();
+    type=jsonObjectRoot.value("type").toString();
+
+    temp=jsonObjectRoot.value("sentenceOrig").toArray();
+    sentenceOrig.clear();
+    for(int i=0;i<temp.size();i++)
+        sentenceOrig.append(temp[i].toString());
+
+    temp=jsonObjectRoot.value("sentenceTran").toArray();
+    sentenceTran.clear();
+    for(int i=0;i<temp.size();i++)
+        sentenceTran.append(temp[i].toString());
+
+    temp=jsonObjectRoot.value("partOrig").toArray();
+    partOrig.clear();
+    for(int i=0;i<temp.size();i++)
+        partOrig.append(QPair<int,int>(temp[i].toObject().value("first").toInt(),temp[i].toObject().value("second").toInt()));
+
+    temp=jsonObjectRoot.value("partTran").toArray();
+    partTran.clear();
+    for(int i=0;i<temp.size();i++)
+        partTran.append(QPair<int,int>(temp[i].toObject().value("first").toInt(),temp[i].toObject().value("second").toInt()));
+
+    splitMode=(SplitMode::Mode)jsonObjectRoot.value("splitMode").toInt();
+
+    //Config Align
+    temp=jsonObjectRoot.value("align").toArray();
+    align.clear();
+    for(int i=0;i<temp.size();i++)
+        align.append(QPair<int,int>(temp[i].toObject().value("first").toInt(),temp[i].toObject().value("second").toInt()));
+
+    //Config Word
+    temp=jsonObjectRoot.value("wordInSentenceId").toArray();
+    wordInSentenceId.clear();
+    for(int i=0;i<temp.size();i++)
+        wordInSentenceId.append(temp[i].toInt());
+
+    temp=jsonObjectRoot.value("wordPos").toArray();
+    wordPos.clear();
+    for(int i=0;i<temp.size();i++)
+        wordPos.append(QPair<int,int>(temp[i].toObject().value("first").toInt(),temp[i].toObject().value("second").toInt()));
+
+    //Config Sent
+    temp=jsonObjectRoot.value("wordMean").toArray();
+    wordMean.clear();
+    for(int i=0;i<temp.size();i++)
+        wordMean.append(temp[i].toString());
+
+    temp=jsonObjectRoot.value("sentenceId").toArray();
+    sentenceId.clear();
+    for(int i=0;i<temp.size();i++)
+        sentenceId.append(QPair<int,int>(temp[i].toObject().value("first").toInt(),temp[i].toObject().value("second").toInt()));
+
+    temp=jsonObjectRoot.value("sentenceMean").toArray();
+    sentenceMean.clear();
+    for(int i=0;i<temp.size();i++)
+        sentenceMean.append(temp[i].toString());
+
+    //Other
+    DisabledButton(ui->pushButtonAlign);
+    DisabledButton(ui->pushButtonWord);
+    DisabledButton(ui->pushButtonSent);
+    if(sentenceOrig.size()!=0)
+    {
+        EnabledButton(ui->pushButtonAlign);
+        if(align.size()==sentenceOrig.size())
+        {
+            EnabledButton(ui->pushButtonWord);
+            EnabledButton(ui->pushButtonSent);
+        }
+    }
+
 }

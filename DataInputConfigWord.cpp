@@ -144,18 +144,21 @@ void DataInputConfigWord::DisabledButton(QPushButton* button)
 
 void DataInputConfigWord::on_pushButtonSentLast_clicked()
 {
+    wordMean[nowNoteId]=ui->lineEditMean->text();
     wordInSentenceId[nowNoteId]--;
     GenerateWord();
 }
 
 void DataInputConfigWord::on_pushButtonSentNext_clicked()
 {
+    wordMean[nowNoteId]=ui->lineEditMean->text();
     wordInSentenceId[nowNoteId]++;
     GenerateWord();
 }
 
 void DataInputConfigWord::on_pushButtonWordLast_clicked()
 {
+    wordMean[nowNoteId]=ui->lineEditMean->text();
     wordPos[nowNoteId].first--;
     wordPos[nowNoteId].second--;
     GenerateWord();
@@ -163,6 +166,7 @@ void DataInputConfigWord::on_pushButtonWordLast_clicked()
 
 void DataInputConfigWord::on_pushButtonWordNext_clicked()
 {
+    wordMean[nowNoteId]=ui->lineEditMean->text();
     wordPos[nowNoteId].first++;
     wordPos[nowNoteId].second++;
     GenerateWord();
@@ -170,12 +174,14 @@ void DataInputConfigWord::on_pushButtonWordNext_clicked()
 
 void DataInputConfigWord::on_pushButtonWordMinus_clicked()
 {
+    wordMean[nowNoteId]=ui->lineEditMean->text();
     wordPos[nowNoteId].second--;
     GenerateWord();
 }
 
 void DataInputConfigWord::on_pushButtonWordPlus_clicked()
 {
+    wordMean[nowNoteId]=ui->lineEditMean->text();
     wordPos[nowNoteId].second++;
     GenerateWord();
 }
@@ -196,6 +202,7 @@ void DataInputConfigWord::on_pushButtonNoteNext_clicked()
 
 void DataInputConfigWord::on_pushButtonNoteInsert_clicked()
 {
+    wordMean[nowNoteId]=ui->lineEditMean->text();
     nowNoteId++;
     if(wordInSentenceId[nowNoteId-1]<sentenceOrig.size()-1)
         wordInSentenceId.insert(nowNoteId,wordInSentenceId[nowNoteId-1]+1);
@@ -208,5 +215,6 @@ void DataInputConfigWord::on_pushButtonNoteInsert_clicked()
 
 void DataInputConfigWord::on_pushButtonDone_clicked()
 {
+    wordMean[nowNoteId]=ui->lineEditMean->text();
     emit(ConfigWordDone(wordInSentenceId,wordPos,wordMean));
 }
