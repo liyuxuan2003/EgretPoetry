@@ -211,11 +211,12 @@ void DataInput::on_pushButtonWriteData_clicked()
 
     QJsonObject jsonObjectRoot;
 
-    //Config Source
+    //Config Info
     jsonObjectRoot.insert("title",title);
     jsonObjectRoot.insert("author",author);
     jsonObjectRoot.insert("type",type);
 
+    //Config Source
     jsonObjectRoot.insert("sentenceOrig",QJsonArray::fromStringList(sentenceOrig));
     jsonObjectRoot.insert("sentenceTran",QJsonArray::fromStringList(sentenceTran));
 
@@ -313,11 +314,12 @@ void DataInput::on_pushButtonReadData_clicked()
 
     QJsonArray temp;
 
-    //Config Source
+    //Config Info
     title=jsonObjectRoot.value("title").toString();
     author=jsonObjectRoot.value("author").toString();
     type=jsonObjectRoot.value("type").toString();
 
+    //Config Source
     temp=jsonObjectRoot.value("sentenceOrig").toArray();
     sentenceOrig.clear();
     for(int i=0;i<temp.size();i++)

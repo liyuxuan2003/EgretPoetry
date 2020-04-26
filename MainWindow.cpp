@@ -31,12 +31,45 @@ MainWindow::MainWindow(QWidget *parent) :
     dataInputConfigSent=new DataInputConfigSent(this);
     dataInputConfigSent->move(0,0);
 
+    tranWordMenu=new TranWordMenu(this);
+    tranWordMenu->move(0,0);
+
+    tranWord=new TranWord(this);
+    tranWord->move(0,0);
+
     //Menu
     connect(menu,&Menu::ShowDataInputMenu,[=]()
     {
         HideAllFrame();
         dataInputMenu->show();
         dataInputMenu->Init();
+    });
+
+    connect(menu,&Menu::ShowTranWordMenu,[=]()
+    {
+        HideAllFrame();
+        tranWordMenu->show();
+        tranWordMenu->Init();
+    });
+
+    //TranWord
+    connect(tranWordMenu,&TranWordMenu::ShowMenu,[=]()
+    {
+        HideAllFrame();
+        menu->show();
+    });
+
+    connect(tranWord,&TranWord::ShowMenu,[=]()
+    {
+        HideAllFrame();
+        menu->show();
+    });
+
+    connect(tranWordMenu,&TranWordMenu::ShowTranWord,[=](const QStringList& sourcePath,bool isRandom,QList<QPair<int,int>> needTest)
+    {
+        HideAllFrame();
+        tranWord->show();
+        tranWord->Init(sourcePath,isRandom,needTest);
     });
 
     //DataInput
@@ -154,6 +187,9 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     dataInputConfigAlign->resize(width(),height());
     dataInputConfigWord->resize(width(),height());
     dataInputConfigSent->resize(width(),height());
+
+    tranWordMenu->resize(width(),height());
+    tranWord->resize(width(),height());
 }
 
 void MainWindow::HideAllFrame()
@@ -167,4 +203,7 @@ void MainWindow::HideAllFrame()
     dataInputConfigAlign->hide();
     dataInputConfigWord->hide();
     dataInputConfigSent->hide();
+
+    tranWordMenu->hide();
+    tranWord->hide();
 }

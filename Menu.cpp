@@ -40,3 +40,8 @@ void Menu::on_pushButtonDataInput_clicked()
 {
     emit(ShowDataInputMenu());
 }
+
+void Menu::on_pushButtonTransWord_clicked()
+{
+    emit(ShowTranWordMenu());
+}

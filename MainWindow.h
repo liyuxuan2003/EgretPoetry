@@ -13,6 +13,9 @@
 #include "DataInputConfigWord.h"
 #include "DataInputConfigSent.h"
 
+#include "TranWordMenu.h"
+#include "TranWord.h"
+
 #include "GlobalEnum.h"
 
 namespace Ui
@@ -43,6 +46,9 @@ private:
     DataInputConfigAlign* dataInputConfigAlign;
     DataInputConfigWord* dataInputConfigWord;
     DataInputConfigSent* dataInputConfigSent;
+
+    TranWordMenu* tranWordMenu;
+    TranWord* tranWord;
 
     void HideAllFrame();
 };

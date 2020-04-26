@@ -38,7 +38,14 @@ SOURCES += \
     DataInputConfigSource.cpp \
     DataInputConfigAlign.cpp \
     DataInputConfigWord.cpp \
-    DataInputConfigSent.cpp
+    DataInputConfigSent.cpp \
+    TranWordMenu.cpp \
+    ReadPoetryData.cpp \
+    RandomPoetryData.cpp \
+    TranWord.cpp \
+    TranWordReview.cpp
+
+RC_FILE += Version.rc
 
 HEADERS += \
         MainWindow.h \
@@ -54,7 +61,13 @@ HEADERS += \
     GlobalEnum.h \
     DataInputConfigAlign.h \
     DataInputConfigWord.h \
-    DataInputConfigSent.h
+    DataInputConfigSent.h \
+    TranWordMenu.h \
+    ReadPoetryData.h \
+    RandomPoetryData.h \
+    TranWord.h \
+    TranWordReview.h \
+    Version.rc
 
 FORMS += \
         MainWindow.ui \
@@ -65,7 +78,10 @@ FORMS += \
     DataInputConfigSource.ui \
     DataInputConfigAlign.ui \
     DataInputConfigWord.ui \
-    DataInputConfigSent.ui
+    DataInputConfigSent.ui \
+    TranWordMenu.ui \
+    TranWord.ui \
+    TranWordReview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
