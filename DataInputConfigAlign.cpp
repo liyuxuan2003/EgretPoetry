@@ -11,9 +11,9 @@ DataInputConfigAlign::DataInputConfigAlign(QWidget *parent) :
 
     l1->AddUnit(ui->labelTitle);
     l1->AddUnit(ui->labelOperateOrig);
-    l1->AddUnit(ui->plainTextEditOperateOrig);
+    l1->AddUnit(ui->lineEditOperateOrig);
     l1->AddUnit(ui->labelOperateTran);
-    l1->AddUnit(ui->plainTextEditOperateTran);
+    l1->AddUnit(ui->lineEditOperateTran);
     l1->AddUnit(new QWidget*[4]{ui->pushButtonMinus,ui->pushButtonPlus,ui->pushButtonLast,ui->pushButtonNext},4);
     l1->AddUnit(new QWidget*[2]{ui->labelRefOrig,ui->labelRefTran},2);
     l1->AddUnit(new QWidget*[2]{ui->plainTextEditRefOrig,ui->plainTextEditRefTran},2);
@@ -31,6 +31,34 @@ void DataInputConfigAlign::resizeEvent(QResizeEvent *event)
 {
     l1->ResizeWithEasyLayout(width(),height());
 }
+
+void DataInputConfigAlign::keyPressEvent(QKeyEvent *ev)
+{
+    switch (ev->key())
+    {
+        case Qt::Key_1:
+        {
+            ui->pushButtonMinus->click();
+            break;
+        }
+        case Qt::Key_2:
+        {
+            ui->pushButtonPlus->click();
+            break;
+        }
+        case Qt::Key_Left:
+        {
+            ui->pushButtonLast->click();
+            break;
+        }
+        case Qt::Key_Right:
+        {
+            ui->pushButtonNext->click();
+            break;
+        }
+    }
+}
+
 
 void DataInputConfigAlign::Init(const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int, int>>& partOrig,const QList<QPair<int, int>>& partTran,const QList<QPair<int, int>>& align)
 {
@@ -56,18 +84,6 @@ void DataInputConfigAlign::Init(const QString& textOrig,const QString& textTran,
     GenerateOperate();
 }
 
-void DataInputConfigAlign::EnabledButton(QPushButton* button)
-{
-    button->setEnabled(true);
-    button->setStyleSheet("background-color:rgb(117, 133, 67); color:rgb(255,255,255)");
-}
-
-void DataInputConfigAlign::DisabledButton(QPushButton* button)
-{
-    button->setDisabled(true);
-    button->setStyleSheet("background-color:rgb(106,106,106); color:rgb(255,255,255);");
-}
-
 int DataInputConfigAlign::GetPartId(const QList<QPair<int,int>>& part,int sentenceId)
 {
     int partId=0;
@@ -86,6 +102,8 @@ int DataInputConfigAlign::GetPartId(const QList<QPair<int,int>>& part,int senten
 
 void DataInputConfigAlign::GenerateOperate()
 {
+    this->setFocus();
+
     QString operateOrig="";
     QString operateTran="";
 
@@ -93,35 +111,23 @@ void DataInputConfigAlign::GenerateOperate()
     for(int i=0;i<alignPrefix[nowIdOrig];i++)
         operateTran+=sentenceTran[nowIdTran+i];
 
-    ui->plainTextEditOperateOrig->setPlainText(operateOrig);
-    ui->plainTextEditOperateTran->setPlainText(operateTran);
+    ui->lineEditOperateOrig->setText(operateOrig);
+    ui->lineEditOperateTran->setText(operateTran);
 
     //Is is it the final one?
-    if(nowIdOrig==sentenceOrig.size()-1)
-        DisabledButton(ui->pushButtonNext);
-    else
-        EnabledButton(ui->pushButtonNext);
+    SetButtonStatus(ui->pushButtonNext,!(nowIdOrig==sentenceOrig.size()-1));
 
     //Is is it the begin one?
-    if(nowIdOrig==0)
-        DisabledButton(ui->pushButtonLast);
-    else
-        EnabledButton(ui->pushButtonLast);
+    SetButtonStatus(ui->pushButtonLast,!(nowIdOrig==0));
 
     int nowTranEndId=nowIdTran+alignPrefix[nowIdOrig]-1;
     int nextTranEndId=nowIdTran+alignPrefix[nowIdOrig];
 
-    //Is the plus button should be disabled?
-    if(GetPartId(partTran,nowTranEndId)!=GetPartId(partTran,nextTranEndId))
-        DisabledButton(ui->pushButtonPlus);
-    else
-        EnabledButton(ui->pushButtonPlus);
-
     //Is the minus button should be disabled?
-    if(alignPrefix[nowIdOrig]-1<1)
-        DisabledButton(ui->pushButtonMinus);
-    else
-        EnabledButton(ui->pushButtonMinus);
+    SetButtonStatus(ui->pushButtonMinus,!(alignPrefix[nowIdOrig]-1<1));
+
+    //Is the plus button should be disabled?
+    SetButtonStatus(ui->pushButtonPlus,!(GetPartId(partTran,nowTranEndId)!=GetPartId(partTran,nextTranEndId)));
 }
 
 void DataInputConfigAlign::on_pushButtonMinus_clicked()

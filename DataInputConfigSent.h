@@ -7,6 +7,8 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
+#include "UiFunction.h"
+
 namespace Ui
 {
     class DataInputConfigSent;
@@ -23,7 +25,9 @@ public:
     void Init(const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& align,const QList<QPair<int,int>>& sentenceId,const QStringList& sentenceMean);
 
 protected:
-    virtual void resizeEvent(QResizeEvent * event);
+    virtual void resizeEvent(QResizeEvent* event);
+
+    virtual void keyPressEvent(QKeyEvent* ev);
 
 private slots:
     void on_pushButtonSentLast_clicked();
@@ -41,6 +45,8 @@ private slots:
     void on_pushButtonNoteNext_clicked();
 
     void on_pushButtonNoteInsert_clicked();
+
+    void on_pushButtonNoteDelete_clicked();
 
     void on_pushButtonDone_clicked();
 
@@ -60,9 +66,6 @@ private:
     int nowNoteId;
 
     void GenerateSent();
-
-    void DisabledButton(QPushButton* button);
-    void EnabledButton(QPushButton* button);
 
 signals:
     void ConfigSentDone(const QList<QPair<int,int>>& sentenceId,const QStringList& sentenceMean);

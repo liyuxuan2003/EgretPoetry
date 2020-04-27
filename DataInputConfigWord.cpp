@@ -33,6 +33,7 @@ DataInputConfigWord::DataInputConfigWord(QWidget *parent) :
     l1->AddElementInUnit(ui->pushButtonNoteLast);
     l1->AddElementInUnit(ui->pushButtonNoteNext);
     l1->AddElementInUnit(ui->pushButtonNoteInsert);
+    l1->AddElementInUnit(ui->pushButtonNoteDelete);
     l1->AddElementInUnit(ui->labelNowId);
 
     l1->AddUnit(new QWidget*[2]{ui->labelRefOrig,ui->labelRefTran},2);
@@ -50,6 +51,63 @@ DataInputConfigWord::~DataInputConfigWord()
 void DataInputConfigWord::resizeEvent(QResizeEvent *event)
 {
     l1->ResizeWithEasyLayout(width(),height());
+}
+
+void DataInputConfigWord::keyPressEvent(QKeyEvent *ev)
+{
+    switch (ev->key())
+    {
+        case Qt::Key_1:
+        {
+            ui->pushButtonNoteLast->click();
+            break;
+        }
+        case Qt::Key_2:
+        {
+            ui->pushButtonNoteNext->click();
+            break;
+        }
+        case Qt::Key_3:
+        {
+            ui->pushButtonNoteInsert->click();
+            break;
+        }
+        case Qt::Key_4:
+        {
+            ui->pushButtonNoteDelete->click();
+            break;
+        }
+        case Qt::Key_Left:
+        {
+            ui->pushButtonWordLast->click();
+            break;
+        }
+        case Qt::Key_Right:
+        {
+            ui->pushButtonWordNext->click();
+            break;
+        }
+        case Qt::Key_Up:
+        {
+            ui->pushButtonWordMinus->click();
+            break;
+        }
+        case Qt::Key_Down:
+        {
+            ui->pushButtonWordPlus->click();
+            break;
+        }
+        case Qt::Key_PageUp:
+        {
+            ui->pushButtonSentLast->click();
+            break;
+        }
+        case Qt::Key_PageDown:
+        {
+            ui->pushButtonSentNext->click();
+            break;
+        }
+    }
 }
 
 void DataInputConfigWord::Init(const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QList<int>& wordInSentenceId,const QList<QPair<int,int>>& wordPos,const QStringList& wordMean)
@@ -76,75 +134,45 @@ void DataInputConfigWord::Init(const QString& textOrig,const QString& textTran,c
 
 void DataInputConfigWord::GenerateWord()
 {
+    this->setFocus();
+
     ui->labelNowId->setText("当前注释编号："+QString::number(nowNoteId+1)+"/"+QString::number(wordInSentenceId.size()));
     ui->lineEditSent->setText(sentenceOrig[wordInSentenceId[nowNoteId]]);
     ui->lineEditWord->setText(sentenceOrig[wordInSentenceId[nowNoteId]].mid(wordPos[nowNoteId].first,wordPos[nowNoteId].second-wordPos[nowNoteId].first+1));
     ui->lineEditMean->setText(wordMean[nowNoteId]);
 
     //Is the word's left side touch the start of sentence?
-    if(wordPos[nowNoteId].first==0)
-        DisabledButton(ui->pushButtonWordLast);
-    else
-        EnabledButton(ui->pushButtonWordLast);
+    SetButtonStatus(ui->pushButtonWordLast,!(wordPos[nowNoteId].first==0));
 
     //Is the word's right side touch the end of sentence?
-    if(wordPos[nowNoteId].second==sentenceOrig[wordInSentenceId[nowNoteId]].size()-2)
-        DisabledButton(ui->pushButtonWordNext);
-    else
-        EnabledButton(ui->pushButtonWordNext);
+    SetButtonStatus(ui->pushButtonWordNext,!(wordPos[nowNoteId].second==sentenceOrig[wordInSentenceId[nowNoteId]].size()-2));
 
     //Is the word can not be shorter?
-    if(wordPos[nowNoteId].second-wordPos[nowNoteId].first==0)
-        DisabledButton(ui->pushButtonWordMinus);
-    else
-        EnabledButton(ui->pushButtonWordMinus);
+    SetButtonStatus(ui->pushButtonWordMinus,!(wordPos[nowNoteId].second-wordPos[nowNoteId].first==0));
 
     //Is the word can not be longer?
-    if(wordPos[nowNoteId].second==sentenceOrig[wordInSentenceId[nowNoteId]].size()-2)
-        DisabledButton(ui->pushButtonWordPlus);
-    else
-        EnabledButton(ui->pushButtonWordPlus);
+    SetButtonStatus(ui->pushButtonWordPlus,!(wordPos[nowNoteId].second==sentenceOrig[wordInSentenceId[nowNoteId]].size()-2));
 
     //Is it the first note?
-    if(nowNoteId==0)
-        DisabledButton(ui->pushButtonNoteLast);
-    else
-        EnabledButton(ui->pushButtonNoteLast);
+    SetButtonStatus(ui->pushButtonNoteLast,!(nowNoteId==0));
 
     //Is it the last note?
-    if(nowNoteId==wordInSentenceId.size()-1)
-        DisabledButton(ui->pushButtonNoteNext);
-    else
-        EnabledButton(ui->pushButtonNoteNext);
+    SetButtonStatus(ui->pushButtonNoteNext,!(nowNoteId==wordInSentenceId.size()-1));
+
+    //Is it the only note?
+    SetButtonStatus(ui->pushButtonNoteDelete,!(wordInSentenceId.size()==1));
 
     //Is it the first sentence?
-    if(wordInSentenceId[nowNoteId]==0)
-        DisabledButton(ui->pushButtonSentLast);
-    else
-        EnabledButton(ui->pushButtonSentLast);
+    SetButtonStatus(ui->pushButtonSentLast,!(wordInSentenceId[nowNoteId]==0));
 
     //Is it the last sentence?
-    if(wordInSentenceId[nowNoteId]==sentenceOrig.size()-1)
-        DisabledButton(ui->pushButtonSentNext);
-    else
-        EnabledButton(ui->pushButtonSentNext);
-}
-
-void DataInputConfigWord::EnabledButton(QPushButton* button)
-{
-    button->setEnabled(true);
-    button->setStyleSheet("background-color:rgb(117, 133, 67); color:rgb(255,255,255)");
-}
-
-void DataInputConfigWord::DisabledButton(QPushButton* button)
-{
-    button->setDisabled(true);
-    button->setStyleSheet("background-color:rgb(106,106,106); color:rgb(255,255,255);");
+    SetButtonStatus(ui->pushButtonSentNext,!(wordInSentenceId[nowNoteId]==sentenceOrig.size()-1));
 }
 
 void DataInputConfigWord::on_pushButtonSentLast_clicked()
 {
     wordMean[nowNoteId]=ui->lineEditMean->text();
+    wordPos[nowNoteId]=QPair<int,int>(0,0);
     wordInSentenceId[nowNoteId]--;
     GenerateWord();
 }
@@ -152,6 +180,7 @@ void DataInputConfigWord::on_pushButtonSentLast_clicked()
 void DataInputConfigWord::on_pushButtonSentNext_clicked()
 {
     wordMean[nowNoteId]=ui->lineEditMean->text();
+    wordPos[nowNoteId]=QPair<int,int>(0,0);
     wordInSentenceId[nowNoteId]++;
     GenerateWord();
 }
@@ -210,6 +239,15 @@ void DataInputConfigWord::on_pushButtonNoteInsert_clicked()
         wordInSentenceId.insert(nowNoteId,wordInSentenceId[nowNoteId-1]+0);
     wordPos.insert(nowNoteId,QPair<int,int>(0,0));
     wordMean.insert(nowNoteId,"");
+    GenerateWord();
+}
+
+void DataInputConfigWord::on_pushButtonNoteDelete_clicked()
+{
+    wordInSentenceId.removeAt(nowNoteId);
+    wordPos.removeAt(nowNoteId);
+    wordMean.removeAt(nowNoteId);
+    nowNoteId=qMax(nowNoteId-1,0);
     GenerateWord();
 }
 

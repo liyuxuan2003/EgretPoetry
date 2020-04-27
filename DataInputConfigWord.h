@@ -8,6 +8,8 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
+#include "UiFunction.h"
+
 namespace Ui
 {
     class DataInputConfigWord;
@@ -24,7 +26,9 @@ public:
     void Init(const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QList<int>& wordInSentenceId,const QList<QPair<int,int>>& wordPos,const QStringList& wordMean);
 
 protected:
-    virtual void resizeEvent(QResizeEvent * event);
+    virtual void resizeEvent(QResizeEvent* event);
+
+    virtual void keyPressEvent(QKeyEvent* ev);
 
 private slots:
     void on_pushButtonSentLast_clicked();
@@ -45,6 +49,8 @@ private slots:
 
     void on_pushButtonNoteInsert_clicked();
 
+    void on_pushButtonNoteDelete_clicked();
+
     void on_pushButtonDone_clicked();
 
 private:
@@ -61,9 +67,6 @@ private:
     int nowNoteId;
 
     void GenerateWord();
-
-    void DisabledButton(QPushButton* button);
-    void EnabledButton(QPushButton* button);
 
 signals:
     void ConfigWordDone(const QList<int>& wordInSentenceId,const QList<QPair<int,int>>& wordPos,const QStringList& wordMean);

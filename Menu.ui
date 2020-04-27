@@ -14,36 +14,13 @@
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(77, 83, 49);</string>
+   <string notr="true">background-color: rgb(60, 70, 35);</string>
   </property>
-  <widget class="QPushButton" name="pushButtonLiteraryKnowledge">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>530</y>
-     <width>191</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(117, 133, 67);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>文学常识练习</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButtonDataInput">
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>530</y>
+     <y>510</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -53,6 +30,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -88,7 +68,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>25</y>
+     <y>30</y>
      <width>471</width>
      <height>61</height>
     </rect>
@@ -110,7 +90,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>250</y>
+     <y>150</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -120,6 +100,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -162,7 +145,7 @@ color: rgb(255, 255, 255);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">image: url(:/PNG/Icon/EgretPoetryB.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -190,34 +173,11 @@ color: rgb(255, 255, 255);</string>
     <string>Designed and Developed by Li Yuxuan.</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButtonSearch">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>120</y>
-     <width>191</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(117, 133, 67);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>诗文检索窗口</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButtonReciteWhole">
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>390</y>
+     <y>330</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -227,6 +187,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -240,7 +203,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>390</y>
+     <y>510</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -250,6 +213,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -263,7 +229,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>250</y>
+     <y>330</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -273,6 +239,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -309,7 +278,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>120</y>
+     <y>150</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -319,6 +288,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);

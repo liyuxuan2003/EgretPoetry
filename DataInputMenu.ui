@@ -14,7 +14,7 @@
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(77, 83, 49);</string>
+   <string notr="true">background-color: rgb(60, 70, 35);</string>
   </property>
   <widget class="QPushButton" name="pushButtonExit">
    <property name="geometry">

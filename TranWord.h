@@ -29,6 +29,8 @@ public:
 protected:
     virtual void resizeEvent(QResizeEvent * event);
 
+    virtual void keyPressEvent(QKeyEvent *ev);
+
 private slots:
     void on_pushButtonCheck_clicked();
 

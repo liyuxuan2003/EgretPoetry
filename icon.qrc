@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/ICO">
+        <file>Icon/EgretPoetryA-16.ico</file>
+        <file>Icon/EgretPoetryA-32.ico</file>
+        <file>Icon/EgretPoetryA-64.ico</file>
+        <file>Icon/EgretPoetryA-128.ico</file>
+        <file>Icon/EgretPoetryB-16.ico</file>
+        <file>Icon/EgretPoetryB-32.ico</file>
+        <file>Icon/EgretPoetryB-64.ico</file>
+        <file>Icon/EgretPoetryB-128.ico</file>
+    </qresource>
+    <qresource prefix="/PNG">
+        <file>Icon/EgretPoetryA.png</file>
+        <file>Icon/EgretPoetryB.png</file>
+    </qresource>
+</RCC>

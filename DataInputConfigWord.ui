@@ -10,11 +10,14 @@
     <height>675</height>
    </rect>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(77, 83, 49);</string>
+   <string notr="true">background-color: rgb(60, 70, 35);</string>
   </property>
   <widget class="QPlainTextEdit" name="plainTextEditRefTran">
    <property name="geometry">
@@ -30,6 +33,9 @@
      <family>等线</family>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -73,6 +79,9 @@ color: rgb(255, 255, 255);</string>
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
 color: rgb(255, 255, 255);</string>
@@ -95,6 +104,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -175,7 +187,7 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>50</x>
      <y>320</y>
-     <width>171</width>
+     <width>121</width>
      <height>41</height>
     </rect>
    </property>
@@ -184,6 +196,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -230,6 +245,9 @@ color: rgb(255, 255, 255);</string>
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
 color: rgb(255, 255, 255);</string>
@@ -255,6 +273,9 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>ArrowCursor</cursorShape>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -317,9 +338,9 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="pushButtonNoteNext">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>190</x>
      <y>320</y>
-     <width>171</width>
+     <width>121</width>
      <height>41</height>
     </rect>
    </property>
@@ -328,6 +349,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -351,6 +375,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -377,6 +404,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -455,6 +485,9 @@ color: rgb(255, 255, 255);</string>
      <strikeout>false</strikeout>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
 color: rgb(255, 255, 255);</string>
@@ -479,6 +512,9 @@ color: rgb(255, 255, 255);</string>
      <weight>50</weight>
      <bold>false</bold>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -506,6 +542,9 @@ color: rgb(255, 255, 255);</string>
      <strikeout>false</strikeout>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
 color: rgb(255, 255, 255);</string>
@@ -531,6 +570,9 @@ color: rgb(255, 255, 255);</string>
      <bold>false</bold>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
 color: rgb(255, 255, 255);</string>
@@ -542,9 +584,9 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="pushButtonNoteInsert">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>330</x>
      <y>320</y>
-     <width>171</width>
+     <width>141</width>
      <height>41</height>
     </rect>
    </property>
@@ -553,6 +595,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -565,7 +610,7 @@ color: rgb(255, 255, 255);</string>
   <widget class="QLabel" name="labelNowId">
    <property name="geometry">
     <rect>
-     <x>630</x>
+     <x>650</x>
      <y>320</y>
      <width>181</width>
      <height>41</height>
@@ -582,6 +627,32 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>当前注释编号：1/10</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonNoteDelete">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>320</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>删除当前注释</string>
    </property>
   </widget>
  </widget>

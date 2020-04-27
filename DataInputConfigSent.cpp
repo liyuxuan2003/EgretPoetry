@@ -28,6 +28,7 @@ DataInputConfigSent::DataInputConfigSent(QWidget *parent) :
     l1->AddElementInUnit(ui->pushButtonNoteLast);
     l1->AddElementInUnit(ui->pushButtonNoteNext);
     l1->AddElementInUnit(ui->pushButtonNoteInsert);
+    l1->AddElementInUnit(ui->pushButtonNoteDelete);
     l1->AddElementInUnit(ui->labelNowId);
 
     l1->AddUnit(new QWidget*[2]{ui->labelRefOrig,ui->labelRefTran},2);
@@ -45,6 +46,58 @@ DataInputConfigSent::~DataInputConfigSent()
 void DataInputConfigSent::resizeEvent(QResizeEvent *event)
 {
     l1->ResizeWithEasyLayout(width(),height());
+}
+
+void DataInputConfigSent::keyPressEvent(QKeyEvent *ev)
+{
+    switch (ev->key())
+    {
+        case Qt::Key_1:
+        {
+            ui->pushButtonNoteLast->click();
+            break;
+        }
+        case Qt::Key_2:
+        {
+            ui->pushButtonNoteNext->click();
+            break;
+        }
+        case Qt::Key_3:
+        {
+            ui->pushButtonNoteInsert->click();
+            break;
+        }
+        case Qt::Key_4:
+        {
+            ui->pushButtonNoteDelete->click();
+            break;
+        }
+        case Qt::Key_Left:
+        {
+            ui->pushButtonSentLast->click();
+            break;
+        }
+        case Qt::Key_Right:
+        {
+            ui->pushButtonSentNext->click();
+            break;
+        }
+        case Qt::Key_Up:
+        {
+            ui->pushButtonSentMinus->click();
+            break;
+        }
+        case Qt::Key_Down:
+        {
+            ui->pushButtonSentPlus->click();
+            break;
+        }
+        case Qt::Key_Space:
+        {
+            ui->pushButtonUseTran->click();
+            break;
+        }
+    }
 }
 
 void DataInputConfigSent::Init(const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& align,const QList<QPair<int,int>>& sentenceId,const QStringList& sentenceMean)
@@ -73,6 +126,8 @@ void DataInputConfigSent::Init(const QString& textOrig,const QString& textTran,c
 
 void DataInputConfigSent::GenerateSent()
 {
+    this->setFocus();
+
     ui->labelNowId->setText("当前重点句编号："+QString::number(nowNoteId+1)+"/"+QString::number(sentenceId.size()));
 
     QString temp="";
@@ -83,52 +138,25 @@ void DataInputConfigSent::GenerateSent()
     ui->lineEditSentTran->setText(sentenceMean[nowNoteId]);
 
     //Is the orig sentence left side touch the start of text?
-    if(sentenceId[nowNoteId].first==0)
-        DisabledButton(ui->pushButtonSentLast);
-    else
-        EnabledButton(ui->pushButtonSentLast);
+    SetButtonStatus(ui->pushButtonSentLast,!(sentenceId[nowNoteId].first==0));
 
     //Is the orig sentence right side touch the end of text?
-    if(sentenceId[nowNoteId].second==sentenceOrig.size()-1)
-        DisabledButton(ui->pushButtonSentNext);
-    else
-        EnabledButton(ui->pushButtonSentNext);
+    SetButtonStatus(ui->pushButtonSentNext,!(sentenceId[nowNoteId].second==sentenceOrig.size()-1));
 
     //Is the orig sentence can not be shorter?
-    if(sentenceId[nowNoteId].second-sentenceId[nowNoteId].first==0)
-        DisabledButton(ui->pushButtonSentMinus);
-    else
-        EnabledButton(ui->pushButtonSentMinus);
+    SetButtonStatus(ui->pushButtonSentMinus,!(sentenceId[nowNoteId].second-sentenceId[nowNoteId].first==0));
 
     //Is the orig sentence can not be longer?
-    if(sentenceId[nowNoteId].second==sentenceOrig.size()-1)
-        DisabledButton(ui->pushButtonSentPlus);
-    else
-        EnabledButton(ui->pushButtonSentPlus);
+    SetButtonStatus(ui->pushButtonSentPlus,!(sentenceId[nowNoteId].second==sentenceOrig.size()-1));
 
     //Is it the first note?
-    if(nowNoteId==0)
-        DisabledButton(ui->pushButtonNoteLast);
-    else
-        EnabledButton(ui->pushButtonNoteLast);
+    SetButtonStatus(ui->pushButtonNoteLast,!(nowNoteId==0));
 
     //Is it the last note?
-    if(nowNoteId==sentenceId.size()-1)
-        DisabledButton(ui->pushButtonNoteNext);
-    else
-        EnabledButton(ui->pushButtonNoteNext);
-}
+    SetButtonStatus(ui->pushButtonNoteNext,!(nowNoteId==sentenceId.size()-1));
 
-void DataInputConfigSent::EnabledButton(QPushButton* button)
-{
-    button->setEnabled(true);
-    button->setStyleSheet("background-color:rgb(117, 133, 67); color:rgb(255,255,255)");
-}
-
-void DataInputConfigSent::DisabledButton(QPushButton* button)
-{
-    button->setDisabled(true);
-    button->setStyleSheet("background-color:rgb(106,106,106); color:rgb(255,255,255);");
+    //Is it the only note?
+    SetButtonStatus(ui->pushButtonNoteDelete,!(sentenceId.size()==1));
 }
 
 void DataInputConfigSent::on_pushButtonSentLast_clicked()
@@ -188,11 +216,19 @@ void DataInputConfigSent::on_pushButtonNoteInsert_clicked()
 {
     sentenceMean[nowNoteId]=ui->lineEditSentTran->text();
     nowNoteId++;
-    if(sentenceId[nowNoteId-1].second<sentenceTran.size()-1)
+    if(sentenceId[nowNoteId-1].second<sentenceOrig.size()-1)
         sentenceId.insert(nowNoteId,QPair<int,int>(sentenceId[nowNoteId-1].second+1,sentenceId[nowNoteId-1].second+1));
     else
         sentenceId.insert(nowNoteId,QPair<int,int>(sentenceId[nowNoteId-1].second+0,sentenceId[nowNoteId-1].second+0));
     sentenceMean.insert(nowNoteId,"");
+    GenerateSent();
+}
+
+void DataInputConfigSent::on_pushButtonNoteDelete_clicked()
+{
+    sentenceId.removeAt(nowNoteId);
+    sentenceMean.removeAt(nowNoteId);
+    nowNoteId=qMax(nowNoteId-1,0);
     GenerateSent();
 }
 

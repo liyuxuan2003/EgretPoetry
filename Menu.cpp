@@ -12,10 +12,9 @@ Menu::Menu(QWidget *parent) :
     l2=new LiFixedToLayout();
 
     l1->AddUnit(ui->labelTitle);
-    l1->AddUnit(new QWidget*[2]{ui->pushButtonLearn,ui->pushButtonSearch},2);
-    l1->AddUnit(new QWidget*[2]{ui->pushButtonTransWord,ui->pushButtonReciteSingle},2);
-    l1->AddUnit(new QWidget*[2]{ui->pushButtonTransSent,ui->pushButtonReciteWhole},2);
-    l1->AddUnit(new QWidget*[2]{ui->pushButtonLiteraryKnowledge,ui->pushButtonDataInput},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonLearn,ui->pushButtonReciteSingle},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonTransWord,ui->pushButtonReciteWhole},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonTransSent,ui->pushButtonDataInput},2);
     l1->AddUnit(new QWidget*[2]{ui->labelExtraInfo1,ui->labelExtraInfo2},2);
 
     l1->LayoutConfigDone();

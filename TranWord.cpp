@@ -42,6 +42,21 @@ void TranWord::resizeEvent(QResizeEvent *event)
     l2->ResizeWithFixedToLayout(width(),height());
 }
 
+void TranWord::keyPressEvent(QKeyEvent *ev)
+{
+    if(ev->key()==Qt::Key_Space)
+    {
+        if(ui->pushButtonAnsR->isVisible()==false)
+            ui->pushButtonCheck->click();
+        else
+            ui->pushButtonAnsR->click();
+    }
+    else if(ev->key()==Qt::Key_1)
+        ui->pushButtonAnsR->click();
+    else if(ev->key()==Qt::Key_2)
+        ui->pushButtonAnsW->click();
+}
+
 void TranWord::Init(const QStringList& sourcePath,bool isRandom,QList<QPair<int,int>> needTest)
 {
     this->sourcePath=sourcePath;
@@ -64,6 +79,8 @@ void TranWord::Init(const QStringList& sourcePath,bool isRandom,QList<QPair<int,
 
 void TranWord::GeneratePage()
 {
+    ui->lineEditUserAns->setFocus();
+
     if(nowId>=order.size())
     {
         int totalNum=userRecord.size();

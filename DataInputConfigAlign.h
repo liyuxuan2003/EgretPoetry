@@ -8,6 +8,8 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
+#include <UiFunction.h>
+
 namespace Ui
 {
     class DataInputConfigAlign;
@@ -24,7 +26,9 @@ public:
     void Init(const QString& textOrig,const QString& textTran,const QStringList& sentenceOrig,const QStringList& sentenceTran,const QList<QPair<int,int>>& partOrig,const QList<QPair<int,int>>& partTran,const QList<QPair<int,int>>& align);
 
 protected:
-    virtual void resizeEvent(QResizeEvent * event);
+    virtual void resizeEvent(QResizeEvent* event);
+
+    virtual void keyPressEvent(QKeyEvent* ev);
 
 private slots:
     void on_pushButtonMinus_clicked();
@@ -54,9 +58,6 @@ private:
     int nowIdTran;
 
     void GenerateOperate();
-
-    void DisabledButton(QPushButton* button);
-    void EnabledButton(QPushButton* button);
 
     int GetPartId(const QList<QPair<int,int>>& part,int id);
 

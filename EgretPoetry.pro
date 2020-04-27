@@ -43,7 +43,8 @@ SOURCES += \
     ReadPoetryData.cpp \
     RandomPoetryData.cpp \
     TranWord.cpp \
-    TranWordReview.cpp
+    TranWordReview.cpp \
+    UiFunction.cpp
 
 RC_FILE += Version.rc
 
@@ -67,7 +68,8 @@ HEADERS += \
     RandomPoetryData.h \
     TranWord.h \
     TranWordReview.h \
-    Version.rc
+    Version.rc \
+    UiFunction.h
 
 FORMS += \
         MainWindow.ui \
@@ -87,3 +89,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    icon.qrc
