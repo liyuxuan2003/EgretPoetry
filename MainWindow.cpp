@@ -37,6 +37,12 @@ MainWindow::MainWindow(QWidget *parent) :
     tranWord=new TranWord(this);
     tranWord->move(0,0);
 
+    tranSentMenu=new TranSentMenu(this);
+    tranSentMenu->move(0,0);
+
+    tranSent=new TranSent(this);
+    tranSent->move(0,0);
+
     //Menu
     connect(menu,&Menu::ShowDataInputMenu,[=]()
     {
@@ -50,6 +56,13 @@ MainWindow::MainWindow(QWidget *parent) :
         HideAllFrame();
         tranWordMenu->show();
         tranWordMenu->Init();
+    });
+
+    connect(menu,&Menu::ShowTranSentMenu,[=]()
+    {
+        HideAllFrame();
+        tranSentMenu->show();
+        tranSentMenu->hide();
     });
 
     //TranWord
@@ -70,6 +83,20 @@ MainWindow::MainWindow(QWidget *parent) :
         HideAllFrame();
         tranWord->show();
         tranWord->Init(sourcePath,isRandom,needTest);
+    });
+
+    //TranSent
+    connect(tranSentMenu,&TranSentMenu::ShowMenu,[=]()
+    {
+        HideAllFrame();
+        menu->show();
+    });
+
+    connect(tranSentMenu,&TranSentMenu::ShowTranSent,[=](const QStringList& sourcePath,bool isRandom,QList<QPair<int,int>> needTest)
+    {
+        HideAllFrame();
+        tranSent->show();
+        //tranSent->Init(sourcePath,isRandom,needTest);
     });
 
     //DataInput

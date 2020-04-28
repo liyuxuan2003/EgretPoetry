@@ -44,3 +44,8 @@ void Menu::on_pushButtonTransWord_clicked()
 {
     emit(ShowTranWordMenu());
 }
+
+void Menu::on_pushButtonTransSent_clicked()
+{
+    emit(ShowTranSentMenu());
+}

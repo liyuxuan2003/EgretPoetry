@@ -44,7 +44,9 @@ SOURCES += \
     RandomPoetryData.cpp \
     TranWord.cpp \
     TranWordReview.cpp \
-    UiFunction.cpp
+    UiFunction.cpp \
+    TranSentMenu.cpp \
+    TranSent.cpp
 
 RC_FILE += Version.rc
 
@@ -69,7 +71,9 @@ HEADERS += \
     TranWord.h \
     TranWordReview.h \
     Version.rc \
-    UiFunction.h
+    UiFunction.h \
+    TranSentMenu.h \
+    TranSent.h
 
 FORMS += \
         MainWindow.ui \
@@ -83,7 +87,9 @@ FORMS += \
     DataInputConfigSent.ui \
     TranWordMenu.ui \
     TranWord.ui \
-    TranWordReview.ui
+    TranWordReview.ui \
+    TranSentMenu.ui \
+    TranSent.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

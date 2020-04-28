@@ -27,6 +27,8 @@ private slots:
 
     void on_pushButtonTransWord_clicked();
 
+    void on_pushButtonTransSent_clicked();
+
 private:
     Ui::Menu *ui;
 
@@ -38,6 +40,8 @@ signals:
     void ShowDataInputMenu();
 
     void ShowTranWordMenu();
+
+    void ShowTranSentMenu();
 };
 
 #endif // MENU_H

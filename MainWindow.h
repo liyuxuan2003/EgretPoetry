@@ -16,6 +16,9 @@
 #include "TranWordMenu.h"
 #include "TranWord.h"
 
+#include "TranSentMenu.h"
+#include "TranSent.h"
+
 #include "GlobalEnum.h"
 
 namespace Ui
@@ -49,6 +52,9 @@ private:
 
     TranWordMenu* tranWordMenu;
     TranWord* tranWord;
+
+    TranSentMenu* tranSentMenu;
+    TranSent* tranSent;
 
     void HideAllFrame();
 };
