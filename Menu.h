@@ -29,6 +29,8 @@ private slots:
 
     void on_pushButtonTransSent_clicked();
 
+    void on_pushButtonReciteWhole_clicked();
+
 private:
     Ui::Menu *ui;
 
@@ -42,6 +44,8 @@ signals:
     void ShowTranWordMenu();
 
     void ShowTranSentMenu();
+
+    void ShowReciteWholeMenu();
 };
 
 #endif // MENU_H

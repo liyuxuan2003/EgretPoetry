@@ -37,7 +37,7 @@ void TranWordMenu::Init()
     ui->radioButtonOrdered->click();
     ui->spinBoxSelect->setValue(10);
     ui->spinBoxSelect->hide();
-    ui->labelTestInfo->setText("未选择单词库！");
+    ui->labelTestInfo->setText("未选择测试诗文库！");
     ui->labelFailed->hide();
     sourcePath.clear();
 }

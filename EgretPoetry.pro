@@ -8,6 +8,8 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QT += texttospeech
+
 TARGET = EgretPoetry
 TEMPLATE = app
 
@@ -46,7 +48,11 @@ SOURCES += \
     TranWordReview.cpp \
     UiFunction.cpp \
     TranSentMenu.cpp \
-    TranSent.cpp
+    TranSent.cpp \
+    TranSentReview.cpp \
+    ReciteWhole.cpp \
+    ReciteWholeMenu.cpp \
+    ReciteWholeReview.cpp
 
 RC_FILE += Version.rc
 
@@ -73,7 +79,11 @@ HEADERS += \
     Version.rc \
     UiFunction.h \
     TranSentMenu.h \
-    TranSent.h
+    TranSent.h \
+    TranSentReview.h \
+    ReciteWhole.h \
+    ReciteWholeMenu.h \
+    ReciteWholeReview.h
 
 FORMS += \
         MainWindow.ui \
@@ -89,7 +99,11 @@ FORMS += \
     TranWord.ui \
     TranWordReview.ui \
     TranSentMenu.ui \
-    TranSent.ui
+    TranSent.ui \
+    TranSentReview.ui \
+    ReciteWhole.ui \
+    ReciteWholeMenu.ui \
+    ReciteWholeReview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

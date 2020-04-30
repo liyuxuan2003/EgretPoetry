@@ -9,7 +9,7 @@
 #include "ReadPoetryData.h"
 #include "RandomPoetryData.h"
 
-#include "TranWordReview.h"
+#include "TranSentReview.h"
 
 namespace Ui
 {
@@ -31,6 +31,15 @@ protected:
 
     virtual void keyPressEvent(QKeyEvent *ev);
 
+private slots:
+    void on_pushButtonCheck_clicked();
+
+    void on_pushButtonAnsR_clicked();
+
+    void on_pushButtonAnsW_clicked();
+
+    void on_pushButtonExit_clicked();
+
 private:
     Ui::TranSent *ui;
 
@@ -38,9 +47,22 @@ private:
 
     LiFixedToLayout* l2;
 
+    TranSentReview* tranSentReview;
+
     QStringList sourcePath;
     bool isRandom;
     QList<QPair<int,int>> needTest;
+
+    QList<ReadPoetryData*> rpd;
+    QList<int> order;
+
+    int nowId;
+    QList<int> userRecord;
+
+    void GeneratePage();
+
+signals:
+    void ShowMenu();
 };
 
 #endif // TRANSENT_H

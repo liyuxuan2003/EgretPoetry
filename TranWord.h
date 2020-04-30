@@ -53,7 +53,7 @@ private:
     bool isRandom;
     QList<QPair<int,int>> needTest;
 
-    QList<ReadPoetryData> rpd;
+    QList<ReadPoetryData*> rpd;
     QList<int> order;
 
     int nowId;

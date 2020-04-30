@@ -49,3 +49,8 @@ void Menu::on_pushButtonTransSent_clicked()
 {
     emit(ShowTranSentMenu());
 }
+
+void Menu::on_pushButtonReciteWhole_clicked()
+{
+    emit(ShowReciteWholeMenu());
+}

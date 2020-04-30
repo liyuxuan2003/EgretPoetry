@@ -19,6 +19,9 @@
 #include "TranSentMenu.h"
 #include "TranSent.h"
 
+#include "ReciteWholeMenu.h"
+#include "ReciteWhole.h"
+
 #include "GlobalEnum.h"
 
 namespace Ui
@@ -55,6 +58,9 @@ private:
 
     TranSentMenu* tranSentMenu;
     TranSent* tranSent;
+
+    ReciteWholeMenu* reciteWholeMenu;
+    ReciteWhole* reciteWhole;
 
     void HideAllFrame();
 };

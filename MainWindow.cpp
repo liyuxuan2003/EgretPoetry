@@ -43,6 +43,12 @@ MainWindow::MainWindow(QWidget *parent) :
     tranSent=new TranSent(this);
     tranSent->move(0,0);
 
+    reciteWholeMenu=new ReciteWholeMenu(this);
+    reciteWholeMenu->move(0,0);
+
+    reciteWhole=new ReciteWhole(this);
+    reciteWhole->move(0,0);
+
     //Menu
     connect(menu,&Menu::ShowDataInputMenu,[=]()
     {
@@ -62,7 +68,14 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         HideAllFrame();
         tranSentMenu->show();
-        tranSentMenu->hide();
+        tranSentMenu->Init();
+    });
+
+    connect(menu,&Menu::ShowReciteWholeMenu,[=]()
+    {
+        HideAllFrame();
+        reciteWholeMenu->show();
+        reciteWholeMenu->Init();
     });
 
     //TranWord
@@ -92,11 +105,37 @@ MainWindow::MainWindow(QWidget *parent) :
         menu->show();
     });
 
+    connect(tranSent,&TranSent::ShowMenu,[=]()
+    {
+        HideAllFrame();
+        menu->show();
+    });
+
     connect(tranSentMenu,&TranSentMenu::ShowTranSent,[=](const QStringList& sourcePath,bool isRandom,QList<QPair<int,int>> needTest)
     {
         HideAllFrame();
         tranSent->show();
-        //tranSent->Init(sourcePath,isRandom,needTest);
+        tranSent->Init(sourcePath,isRandom,needTest);
+    });
+
+    //ReciteWhole
+    connect(reciteWholeMenu,&ReciteWholeMenu::ShowMenu,[=]()
+    {
+        HideAllFrame();
+        menu->show();
+    });
+
+    connect(reciteWhole,&ReciteWhole::ShowMenu,[=]()
+    {
+        HideAllFrame();
+        menu->show();
+    });
+
+    connect(reciteWholeMenu,&ReciteWholeMenu::ShowReciteWhole,[=](const QString& sourcePath,bool isManual)
+    {
+        HideAllFrame();
+        reciteWhole->show();
+        reciteWhole->Init(sourcePath,isManual);
     });
 
     //DataInput
@@ -217,6 +256,12 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
     tranWordMenu->resize(width(),height());
     tranWord->resize(width(),height());
+
+    tranSentMenu->resize(width(),height());
+    tranSent->resize(width(),height());
+
+    reciteWholeMenu->resize(width(),height());
+    reciteWhole->resize(width(),height());
 }
 
 void MainWindow::HideAllFrame()
@@ -233,4 +278,10 @@ void MainWindow::HideAllFrame()
 
     tranWordMenu->hide();
     tranWord->hide();
+
+    tranSentMenu->hide();
+    tranSent->hide();
+
+    reciteWholeMenu->hide();
+    reciteWhole->hide();
 }

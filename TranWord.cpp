@@ -67,7 +67,7 @@ void TranWord::Init(const QStringList& sourcePath,bool isRandom,QList<QPair<int,
     order.clear();
 
     for(int i=0;i<sourcePath.size();i++)
-        rpd.append(ReadPoetryData(sourcePath[i]));
+        rpd.append(new ReadPoetryData(sourcePath[i]));
 
     order=RandomOrder(needTest.size(),isRandom);
 
@@ -110,11 +110,11 @@ void TranWord::GeneratePage()
 
     int nowSection=needTest[order[nowId]].first;
     int nowInsideId=needTest[order[nowId]].second;
-    ReadPoetryData& nowRpd=rpd[nowSection];
+    ReadPoetryData*& nowRpd=rpd[nowSection];
 
-    int nowWordSentId=nowRpd.GetWordInSentenceId()[nowInsideId];
-    QString nowWordSent=nowRpd.GetSentenceOrig()[nowWordSentId];
-    QPair<int,int> nowWordLocation=nowRpd.GetWordPos()[nowInsideId];
+    int nowWordSentId=nowRpd->GetWordInSentenceId()[nowInsideId];
+    QString nowWordSent=nowRpd->GetSentenceOrig()[nowWordSentId];
+    QPair<int,int> nowWordLocation=nowRpd->GetWordPos()[nowInsideId];
 
     AddFontString(nowWordSent,nowWordLocation.first,nowWordLocation.second,"<b><font color=\"#FF645A\">","</font></b>");
 
@@ -124,20 +124,20 @@ void TranWord::GeneratePage()
 
     int splitCounter=0;
     QString nowOrigText="";
-    for(int i=0;i<nowRpd.GetSentenceOrig().size();i++)
+    for(int i=0;i<nowRpd->GetSentenceOrig().size();i++)
     {
-        QString toBeAppend=nowRpd.GetSentenceOrig()[i];
+        QString toBeAppend=nowRpd->GetSentenceOrig()[i];
         if(i==nowWordSentId)
             AddFontString(toBeAppend,nowWordLocation.first,nowWordLocation.second,"<b><font color=\"#FF645A\">","</font></b>");
 
         nowOrigText.append(toBeAppend);
 
-        if(nowRpd.GetPartOrig()[splitCounter].second==i && splitCounter!=nowRpd.GetPartOrig().size())
+        if(nowRpd->GetPartOrig()[splitCounter].second==i && splitCounter!=nowRpd->GetPartOrig().size())
         {
             splitCounter++;
-            if(nowRpd.GetSplitMode()==SplitMode::LineBreak)
+            if(nowRpd->GetSplitMode()==SplitMode::LineBreak)
                 nowOrigText+="<br>";
-            if(nowRpd.GetSplitMode()==SplitMode::Section)
+            if(nowRpd->GetSplitMode()==SplitMode::Section)
                 nowOrigText+="<br><br>";
         }
     }
@@ -162,9 +162,9 @@ void TranWord::on_pushButtonCheck_clicked()
 {
     int nowSection=needTest[order[nowId]].first;
     int nowInsideId=needTest[order[nowId]].second;
-    ReadPoetryData& nowRpd=rpd[nowSection];
+    ReadPoetryData*& nowRpd=rpd[nowSection];
 
-    ui->lineEditRightAns->setText(nowRpd.GetWordMean()[nowInsideId]);
+    ui->lineEditRightAns->setText(nowRpd->GetWordMean()[nowInsideId]);
 
     ui->pushButtonAnsR->show();
     ui->pushButtonAnsW->show();
