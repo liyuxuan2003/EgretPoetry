@@ -52,6 +52,28 @@ void ReciteWhole::resizeEvent(QResizeEvent *event)
     l2->ResizeWithFixedToLayout(width(),height());
 }
 
+void ReciteWhole::keyPressEvent(QKeyEvent *ev)
+{
+    switch(ev->key())
+    {
+    case Qt::Key_1:
+        ui->pushButtonOne->click();
+        break;
+    case Qt::Key_2:
+        ui->pushButtonTwo->click();
+        break;
+    case Qt::Key_3:
+        ui->pushButtonRead->click();
+        break;
+    case Qt::Key_4:
+        ui->pushButtonAll->click();
+        break;
+    case Qt::Key_5:
+        ui->pushButtonPunctuation->click();
+        break;
+    }
+}
+
 void ReciteWhole::Init(QString sourcePath,bool isManual)
 {
     this->sourcePath=sourcePath;
@@ -92,6 +114,8 @@ void ReciteWhole::GeneratePage()
     ui->lineEditUserAns->clear();
     ui->labelRightAns->clear();
 
+    ui->lineEditUserAns->setFocus();
+
     userRecord.append(0);
 
     ui->labelLocation->setText("当前分句："+QString::number(nowId+1)+"/"+QString::number(needTest.size()));
@@ -120,6 +144,7 @@ void ReciteWhole::GeneratePage()
         }
     }
     ui->textBrowserReference->setText(refText);
+    ui->textBrowserReference->moveCursor(QTextCursor::End);
 
     if(isManual==true)
         ui->lineEditUserAns->setMaxLength(rpd->GetSentenceOrig()[needTest[nowId]].length());
@@ -131,7 +156,7 @@ void ReciteWhole::GeneratePage()
     ui->labelTips->setText("答案提示：");
 }
 
-void ReciteWhole::on_lineEditUserAns_textChanged(const QString &arg1)
+void ReciteWhole::on_lineEditUserAns_textEdited(const QString &arg1)
 {
     QString userText=arg1;
     QString rightText=rpd->GetSentenceOrig()[needTest[nowId]];
@@ -162,10 +187,14 @@ void ReciteWhole::on_lineEditUserAns_textChanged(const QString &arg1)
             setText.append("<font color=\"#FFDE5A\">＊</font>");
         ui->labelRightAns->setText(setText);
 
+        int cursorPos=ui->lineEditUserAns->cursorPosition();
+
         if(isManual==true)
             ui->lineEditUserAns->setMaxLength(rpd->GetSentenceOrig()[needTest[nowId]].length());
         if(isManual==false)
             ui->lineEditUserAns->setMaxLength(rpd->GetSentenceOrig()[needTest[nowId]].length()-1);
+
+        ui->lineEditUserAns->setCursorPosition(cursorPos);
     }
     else
     {

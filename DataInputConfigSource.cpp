@@ -153,7 +153,7 @@ void DataInputConfigSource::on_pushButtonDone_clicked()
         modeTran=modeOrig;
 
     int mode=-1;
-    if(modeOrig!=modeTran && mode)
+    if(modeOrig!=modeTran)
         SetErrorText("原文和译文间使用的划分模式不一致，这是不被允许的！",errorTextVar);
     else
         mode=modeOrig;

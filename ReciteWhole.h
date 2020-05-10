@@ -31,8 +31,10 @@ public:
 protected:
     virtual void resizeEvent(QResizeEvent * event);
 
+    virtual void keyPressEvent(QKeyEvent *ev);
+
 private slots:
-    void on_lineEditUserAns_textChanged(const QString &arg1);
+    void on_lineEditUserAns_textEdited(const QString &arg1);
 
     void on_pushButtonNext_clicked();
 

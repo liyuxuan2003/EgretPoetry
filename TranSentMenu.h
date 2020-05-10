@@ -22,6 +22,7 @@ class TranSentMenu : public QFrame
 public:
     explicit TranSentMenu(QWidget *parent = nullptr);
     ~TranSentMenu();
+
     void Init();
 
 protected:
