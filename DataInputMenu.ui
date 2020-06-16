@@ -43,8 +43,8 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>470</y>
-     <width>161</width>
+     <y>490</y>
+     <width>151</width>
      <height>51</height>
     </rect>
    </property>
@@ -59,7 +59,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>创建诗文库！</string>
+    <string>创建诗文库</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelName">
@@ -88,7 +88,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>310</y>
+     <y>320</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -133,7 +133,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>310</y>
+     <y>320</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -155,7 +155,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>320</x>
-     <y>310</y>
+     <y>320</y>
      <width>551</width>
      <height>41</height>
     </rect>
@@ -196,7 +196,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>550</y>
+     <y>560</y>
      <width>441</width>
      <height>31</height>
     </rect>
@@ -212,6 +212,32 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>创建失败！请检查路径下是否有重名文件！</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonOpen">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>490</y>
+     <width>171</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>打开已有诗文库</string>
    </property>
   </widget>
  </widget>

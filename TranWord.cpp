@@ -26,9 +26,13 @@ TranWord::TranWord(QWidget *parent) :
     l1->LayoutConfigDone();
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
+    l2->AddUnit(ui->pushButtonHelp,width(),height(),LiFixedCorner::RightTop);
 
     tranWordReview=new TranWordReview();
     tranWordReview->hide();
+
+    help=new Help();
+    help->hide();
 }
 
 TranWord::~TranWord()
@@ -51,9 +55,9 @@ void TranWord::keyPressEvent(QKeyEvent *ev)
         else
             ui->pushButtonAnsR->click();
     }
-    else if(ev->key()==Qt::Key_1)
+    else if(ev->key()==Qt::Key_1 && ui->pushButtonAnsR->isVisible()==true)
         ui->pushButtonAnsR->click();
-    else if(ev->key()==Qt::Key_2)
+    else if(ev->key()==Qt::Key_2 && ui->pushButtonAnsW->isVisible()==true)
         ui->pushButtonAnsW->click();
 }
 
@@ -142,7 +146,9 @@ void TranWord::GeneratePage()
         }
     }
 
+    int nowLocation=ui->textBrowserReference->verticalScrollBar()->value();
     ui->textBrowserReference->setText(nowOrigText);
+    ui->textBrowserReference->verticalScrollBar()->setValue(nowLocation);
 
     ui->pushButtonAnsR->hide();
     ui->pushButtonAnsW->hide();
@@ -187,4 +193,17 @@ void TranWord::on_pushButtonAnsW_clicked()
 void TranWord::on_pushButtonExit_clicked()
 {
     emit(ShowMenu());
+}
+
+void TranWord::on_pushButtonHelp_clicked()
+{
+    QString modeName="重点句翻译练习";
+    QStringList text;
+    text.append("空格键：显示答案/正确");
+    text.append("数字键1：正确");
+    text.append("数字键2：错误");
+    text.append("Tab键：在快捷键和输入框间切换");
+
+    help->Init(modeName,text);
+    help->exec();
 }

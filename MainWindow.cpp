@@ -49,6 +49,15 @@ MainWindow::MainWindow(QWidget *parent) :
     reciteWhole=new ReciteWhole(this);
     reciteWhole->move(0,0);
 
+    learn=new Learn(this);
+    learn->move(0,0);
+
+    learnNormal=new LearnNormal(this);
+    learnNormal->move(0,0);
+
+    learnSplit=new LearnSplit(this);
+    learnSplit->move(0,0);
+
     //Menu
     connect(menu,&Menu::ShowDataInputMenu,[=]()
     {
@@ -76,6 +85,13 @@ MainWindow::MainWindow(QWidget *parent) :
         HideAllFrame();
         reciteWholeMenu->show();
         reciteWholeMenu->Init();
+    });
+
+    connect(menu,&Menu::ShowLearn,[=]()
+    {
+        HideAllFrame();
+        learn->show();
+        learn->Init();
     });
 
     //TranWord
@@ -136,6 +152,39 @@ MainWindow::MainWindow(QWidget *parent) :
         HideAllFrame();
         reciteWhole->show();
         reciteWhole->Init(sourcePath,isManual);
+    });
+
+    //Learn
+    connect(learn,&Learn::ShowLearnNormal,[=](const QString& sourcePath)
+    {
+        HideAllFrame();
+        learnNormal->show();
+        learnNormal->Init(sourcePath);
+    });
+
+    connect(learn,&Learn::ShowLearnSplit,[=](const QString& sourcePath,int mode)
+    {
+        HideAllFrame();
+        learnSplit->show();
+        learnSplit->Init(sourcePath,mode);
+    });
+
+    connect(learnNormal,&LearnNormal::ShowLearn,[=]()
+    {
+        HideAllFrame();
+        learn->show();
+    });
+
+    connect(learnSplit,&LearnSplit::ShowLearn,[=]()
+    {
+        HideAllFrame();
+        learn->show();
+    });
+
+    connect(learn,&Learn::ShowMenu,[=]()
+    {
+        HideAllFrame();
+        menu->show();
     });
 
     //DataInput
@@ -262,6 +311,10 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
     reciteWholeMenu->resize(width(),height());
     reciteWhole->resize(width(),height());
+
+    learn->resize(width(),height());
+    learnNormal->resize(width(),height());
+    learnSplit->resize(width(),height());
 }
 
 void MainWindow::HideAllFrame()
@@ -284,4 +337,8 @@ void MainWindow::HideAllFrame()
 
     reciteWholeMenu->hide();
     reciteWhole->hide();
+
+    learn->hide();
+    learnNormal->hide();
+    learnSplit->hide();
 }

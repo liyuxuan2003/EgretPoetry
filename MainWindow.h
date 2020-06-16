@@ -22,6 +22,10 @@
 #include "ReciteWholeMenu.h"
 #include "ReciteWhole.h"
 
+#include "Learn.h"
+#include "LearnNormal.h"
+#include "LearnSplit.h"
+
 #include "GlobalEnum.h"
 
 namespace Ui
@@ -61,6 +65,10 @@ private:
 
     ReciteWholeMenu* reciteWholeMenu;
     ReciteWhole* reciteWhole;
+
+    Learn* learn;
+    LearnNormal* learnNormal;
+    LearnSplit* learnSplit;
 
     void HideAllFrame();
 };

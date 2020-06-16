@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ReciteWhole</class>
- <widget class="QFrame" name="ReciteWhole">
+ <class>LearnSplit</class>
+ <widget class="QFrame" name="LearnSplit">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,22 +10,42 @@
     <height>675</height>
    </rect>
   </property>
-  <property name="focusPolicy">
-   <enum>Qt::TabFocus</enum>
-  </property>
   <property name="windowTitle">
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(60, 70, 35);</string>
+   <string notr="true">background-color: rgb(60, 70, 35);
+</string>
   </property>
-  <widget class="QTextBrowser" name="textBrowserReference">
+  <widget class="QLabel" name="labelAuthor">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>480</y>
-     <width>901</width>
-     <height>151</height>
+     <y>100</y>
+     <width>231</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>作者：魏征</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowserRef">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>450</y>
+     <width>941</width>
+     <height>191</height>
     </rect>
    </property>
    <property name="font">
@@ -59,76 +79,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;时六年九月十五日。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButtonOne">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>310</y>
-     <width>151</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(117, 133, 67);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>提示第一个字</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelTitle">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>30</y>
-     <width>471</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>19</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>全文默写练习</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelReference">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>430</y>
-     <width>191</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>已默写内容：</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButtonExit">
    <property name="geometry">
     <rect>
@@ -152,15 +102,59 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>返回首页</string>
+    <string>返回上一页</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelUserAnsTitle">
+  <widget class="QLabel" name="labelTitle">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>170</y>
-     <width>91</width>
+     <y>30</y>
+     <width>751</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>19</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>谏太宗十思疏</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelRef">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>400</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>原译文参考：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelOne">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>160</y>
+     <width>121</width>
      <height>41</height>
     </rect>
    </property>
@@ -174,37 +168,15 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>答案输入：</string>
+    <string>加点字出处：</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelRightAnsTitle">
+  <widget class="QLabel" name="labelOneText">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>240</y>
-     <width>91</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>答案校对：</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelRightAns">
-   <property name="geometry">
-    <rect>
-     <x>153</x>
-     <y>240</y>
-     <width>687</width>
+     <x>170</x>
+     <y>160</y>
+     <width>821</width>
      <height>41</height>
     </rect>
    </property>
@@ -213,35 +185,6 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>13</pointsize>
     </font>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(117, 133, 67);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;庆历四年春，&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditUserAns">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>170</y>
-     <width>691</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>13</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::StrongFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);
@@ -250,168 +193,13 @@ color: rgb(255, 255, 255);</string>
    <property name="text">
     <string>庆历四年春，</string>
    </property>
-   <property name="readOnly">
-    <bool>false</bool>
-   </property>
   </widget>
-  <widget class="QLabel" name="labelTips">
+  <widget class="QLabel" name="labelTwoText">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>360</y>
-     <width>761</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>答案提示：庆</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonTwo">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>310</y>
-     <width>151</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(117, 133, 67);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>提示前两个字</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonRead">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>310</y>
-     <width>151</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(117, 133, 67);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>朗读当前分句</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonAll">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>310</y>
-     <width>151</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(117, 133, 67);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>显示当前分句</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonPunctuation">
-   <property name="geometry">
-    <rect>
-     <x>730</x>
-     <y>310</y>
-     <width>111</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(117, 133, 67);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>查看标点</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonNext">
-   <property name="geometry">
-    <rect>
-     <x>860</x>
-     <y>170</y>
-     <width>231</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(117, 133, 67);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>点击按钮或输入空格继续</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelCover">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
+     <x>170</x>
      <y>240</y>
-     <width>3</width>
+     <width>821</width>
      <height>41</height>
     </rect>
    </property>
@@ -426,15 +214,15 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>庆历四年春，</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelLocation">
+  <widget class="QLabel" name="labelTwo">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>100</y>
-     <width>211</width>
+     <y>240</y>
+     <width>121</width>
      <height>41</height>
     </rect>
    </property>
@@ -448,7 +236,145 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>当前分句：1/5</string>
+    <string>加点字翻译：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelLocation">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>320</y>
+     <width>291</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>当前加点字：1/50</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonNext">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>320</y>
+     <width>171</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>下一个加点字</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonLast">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>320</y>
+     <width>171</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>上一个加点字</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBoxMode">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>410</y>
+     <width>231</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>原文译文分离显示</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>原文译文逐段交叉显示</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>原文译文逐句交叉显示</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="pushButtonRead">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>320</y>
+     <width>171</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(117, 133, 67);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>朗读加点字</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonHelp">

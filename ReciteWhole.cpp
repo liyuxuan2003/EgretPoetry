@@ -30,6 +30,8 @@ ReciteWhole::ReciteWhole(QWidget *parent) :
     l1->LayoutConfigDone();
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
+    l2->AddUnit(ui->pushButtonHelp,width(),height(),LiFixedCorner::RightTop);
+
 
     reciteWholeReview=new ReciteWholeReview();
     reciteWholeReview->hide();
@@ -39,6 +41,9 @@ ReciteWhole::ReciteWhole(QWidget *parent) :
     tts->setRate(0.0);
     tts->setPitch(1.0);
     tts->setVolume(1.0);
+
+    help=new Help();
+    help->hide();
 }
 
 ReciteWhole::~ReciteWhole()
@@ -311,4 +316,18 @@ void ReciteWhole::on_pushButtonPunctuation_clicked()
     if(punctuation=="：")
         ui->labelTips->setText("答案提示：冒号（：）");
     userRecord[nowId]=qMax(userRecord[nowId],1);
+}
+
+void ReciteWhole::on_pushButtonHelp_clicked()
+{
+    QString modeName="全文默写模式";
+    QStringList text;
+    text.append("数字键1："+ui->pushButtonOne->text());
+    text.append("数字键2："+ui->pushButtonTwo->text());
+    text.append("数字键3："+ui->pushButtonRead->text());
+    text.append("数字键4："+ui->pushButtonAll->text());
+    text.append("数字键5："+ui->pushButtonPunctuation->text());
+    text.append("Tab键：在快捷键和输入框间切换");
+    help->Init(modeName,text);
+    help->exec();
 }

@@ -2,6 +2,7 @@
 #define TRANWORD_H
 
 #include <QFrame>
+#include <QScrollBar>
 
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
@@ -10,6 +11,8 @@
 #include "RandomPoetryData.h"
 
 #include "TranWordReview.h"
+
+#include "Help.h"
 
 namespace Ui
 {
@@ -40,12 +43,16 @@ private slots:
 
     void on_pushButtonExit_clicked();
 
+    void on_pushButtonHelp_clicked();
+
 private:
     Ui::TranWord* ui;
 
     LiEasyLayout* l1;
 
     LiFixedToLayout* l2;
+
+    Help* help;
 
     TranWordReview* tranWordReview;
 

@@ -107,6 +107,8 @@ private:
     void DisabledButton(QPushButton* button);
     void EnabledButton(QPushButton* button);
 
+    void ReadData(QString readFileUrl);
+
 signals:
     void ShowMenu();
 

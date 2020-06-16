@@ -22,6 +22,11 @@ Menu::Menu(QWidget *parent) :
     l2->AddUnit(ui->labelIcon,width(),height(),LiFixedCorner::RightTop);
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
     l2->AddUnit(ui->pushButtonAbout,width(),height(),LiFixedCorner::RightBottom);
+
+    SetButtonStatus(ui->pushButtonReciteSingle,false);
+
+    about=new About();
+    about->hide();
 }
 
 Menu::~Menu()
@@ -53,4 +58,19 @@ void Menu::on_pushButtonTransSent_clicked()
 void Menu::on_pushButtonReciteWhole_clicked()
 {
     emit(ShowReciteWholeMenu());
+}
+
+void Menu::on_pushButtonLearn_clicked()
+{
+    emit(ShowLearn());
+}
+
+void Menu::on_pushButtonAbout_clicked()
+{
+    about->exec();
+}
+
+void Menu::on_pushButtonExit_clicked()
+{
+    QApplication::exit();
 }

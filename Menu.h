@@ -6,6 +6,9 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
+#include "UiFunction.h"
+#include "About.h"
+
 namespace Ui
 {
     class Menu;
@@ -31,12 +34,20 @@ private slots:
 
     void on_pushButtonReciteWhole_clicked();
 
+    void on_pushButtonLearn_clicked();
+
+    void on_pushButtonAbout_clicked();
+
+    void on_pushButtonExit_clicked();
+
 private:
     Ui::Menu *ui;
 
     LiEasyLayout* l1;
 
     LiFixedToLayout* l2;
+
+    About* about;
 
 signals:
     void ShowDataInputMenu();
@@ -46,6 +57,8 @@ signals:
     void ShowTranSentMenu();
 
     void ShowReciteWholeMenu();
+
+    void ShowLearn();
 };
 
 #endif // MENU_H

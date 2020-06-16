@@ -26,9 +26,13 @@ TranSent::TranSent(QWidget *parent) :
     l1->LayoutConfigDone();
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
+    l2->AddUnit(ui->pushButtonHelp,width(),height(),LiFixedCorner::RightTop);
 
     tranSentReview=new TranSentReview();
     tranSentReview->hide();
+
+    help=new Help();
+    help->hide();
 }
 
 TranSent::~TranSent()
@@ -144,7 +148,9 @@ void TranSent::GeneratePage()
         }
     }
 
+    int nowLocation=ui->textBrowserReference->verticalScrollBar()->value();
     ui->textBrowserReference->setText(nowOrigText);
+    ui->textBrowserReference->verticalScrollBar()->setValue(nowLocation);
 
     ui->pushButtonAnsR->hide();
     ui->pushButtonAnsW->hide();
@@ -181,3 +187,15 @@ void TranSent::on_pushButtonExit_clicked()
     emit(ShowMenu());
 }
 
+void TranSent::on_pushButtonHelp_clicked()
+{
+    QString modeName="重点句翻译练习";
+    QStringList text;
+    text.append("空格键：显示答案/正确");
+    text.append("数字键1：正确");
+    text.append("数字键2：错误");
+    text.append("Tab键：在快捷键和输入框间切换");
+
+    help->Init(modeName,text);
+    help->exec();
+}

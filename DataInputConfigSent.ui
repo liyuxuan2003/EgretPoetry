@@ -10,6 +10,9 @@
     <height>675</height>
    </rect>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::TabFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Frame</string>
   </property>
@@ -305,7 +308,7 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>710</x>
      <y>310</y>
-     <width>261</width>
+     <width>361</width>
      <height>41</height>
     </rect>
    </property>
@@ -411,7 +414,7 @@ color: rgb(255, 255, 255);</string>
     </font>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
+    <enum>Qt::StrongFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(117, 133, 67);

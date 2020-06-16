@@ -33,6 +33,8 @@ private slots:
 
     void on_pushButtonExit_clicked();
 
+    void on_pushButtonOpen_clicked();
+
 private:
     Ui::DataInputMenu* ui;
 

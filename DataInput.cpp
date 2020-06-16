@@ -68,6 +68,10 @@ void DataInput::Init(const QString &path,const QString &name)
     DisabledButton(ui->pushButtonWord);
 
     ui->labelWriteData->setText("未保存数据！");
+    ui->pushButtonReadData->hide();
+
+    if(QFile(path+name+".json").size()!=0)
+        ReadData(path+name+".json");
 }
 
 void DataInput::on_pushButtonExit_clicked()
@@ -302,7 +306,11 @@ void DataInput::on_pushButtonReadData_clicked()
     QString readFileUrl=QFileDialog::getOpenFileName(this,"请选择需读取的诗文库（警告！当前数据将被覆盖！）","D:/","JSON File (*.json)");
     if(readFileUrl=="")
         return;
+    ReadData(readFileUrl);
+}
 
+void DataInput::ReadData(QString readFileUrl)
+{
     QFile file(readFileUrl);
     file.open(QIODevice::ReadOnly);
 
@@ -388,5 +396,4 @@ void DataInput::on_pushButtonReadData_clicked()
             EnabledButton(ui->pushButtonSent);
         }
     }
-
 }

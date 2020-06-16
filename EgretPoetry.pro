@@ -52,7 +52,12 @@ SOURCES += \
     TranSentReview.cpp \
     ReciteWhole.cpp \
     ReciteWholeMenu.cpp \
-    ReciteWholeReview.cpp
+    ReciteWholeReview.cpp \
+    Learn.cpp \
+    LearnNormal.cpp \
+    LearnSplit.cpp \
+    About.cpp \
+    Help.cpp
 
 RC_FILE += Version.rc
 
@@ -83,7 +88,12 @@ HEADERS += \
     TranSentReview.h \
     ReciteWhole.h \
     ReciteWholeMenu.h \
-    ReciteWholeReview.h
+    ReciteWholeReview.h \
+    Learn.h \
+    LearnNormal.h \
+    LearnSplit.h \
+    About.h \
+    Help.h
 
 FORMS += \
         MainWindow.ui \
@@ -103,7 +113,12 @@ FORMS += \
     TranSentReview.ui \
     ReciteWhole.ui \
     ReciteWholeMenu.ui \
-    ReciteWholeReview.ui
+    ReciteWholeReview.ui \
+    Learn.ui \
+    LearnNormal.ui \
+    LearnSplit.ui \
+    About.ui \
+    Help.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

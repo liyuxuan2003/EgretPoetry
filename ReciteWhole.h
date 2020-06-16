@@ -12,6 +12,8 @@
 
 #include "ReciteWholeReview.h"
 
+#include "Help.h"
+
 namespace Ui
 {
     class ReciteWhole;
@@ -50,12 +52,16 @@ private slots:
 
     void on_pushButtonPunctuation_clicked();
 
+    void on_pushButtonHelp_clicked();
+
 private:
     Ui::ReciteWhole *ui;
 
     LiEasyLayout* l1;
 
     LiFixedToLayout* l2;
+
+    Help* help;
 
     ReciteWholeReview* reciteWholeReview;
 
